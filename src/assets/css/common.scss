@@ -1,0 +1,50 @@
+.handle-icon {
+    height: 1.8rem;
+    display: inline-block;
+    color: #999999;
+    margin-left: 4rem;
+    white-space: nowrap;
+    font-size: 1rem;
+    line-height: 2rem;
+    position: relative;
+    &.icon-star::before {
+        content: '';
+        position: absolute;
+        width: 1.8rem;
+        height: 1.8rem;
+        left: -2rem;
+        display: inline-block;
+        background-image: url("/src/assets/img/common/star-hui.png");
+        background-size: cover;
+    }
+    &.icon-comment::before {
+        content: '';
+        position: absolute;
+        width: 1.8rem;
+        height: 1.8rem;
+        left: -2rem;
+        display: inline-block;
+        background-image: url("/src/assets/img/common/comment-hui.png");
+        background-size: cover;
+    }
+    &.icon-star.fly-action::before {
+        content: '';
+        position: absolute;
+        width: 1.8rem;
+        height: 1.8rem;
+        left: -2rem;
+        display: inline-block;
+        background-image: url("/src/assets/img/common/star-orange.png");
+        background-size: cover;
+    }
+    &.icon-comment.fly-action::before {
+        content: '';
+        position: absolute;
+        width: 1.8rem;
+        height: 1.8rem;
+        left: -2rem;
+        display: inline-block;
+        background-image: url("/src/assets/img/common/comment-orange.png");
+        background-size: cover;
+    }
+}
