@@ -5,14 +5,13 @@
 </template>
 
 <script>
-  import "./assets/js/autoSize(20).js"
+  import "./assets/js/autoSize(20).js";
   export default {
     name: 'app'
   }
 </script>
-<!--<script src="./assets/js/autoSize(20).js"></script>-->
-<style lang="sass">
+<style lang="scss">
   /**引入css内的图片必须绝对路径**/
-  @import "./assets/css/base.scss"
-  @import "./assets/css/common.scss"
+  @import "./assets/css/base.scss";
+  @import "./assets/css/common.scss";
 </style>

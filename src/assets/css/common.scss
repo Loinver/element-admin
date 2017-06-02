@@ -14,7 +14,7 @@
         height: 1.8rem;
         left: -2rem;
         display: inline-block;
-        background-image: url("/src/assets/img/common/star-hui.png");
+        background-image: url("./assets/img/star-hui.png");
         background-size: cover;
     }
     &.icon-comment::before {
@@ -24,7 +24,7 @@
         height: 1.8rem;
         left: -2rem;
         display: inline-block;
-        background-image: url("/src/assets/img/common/comment-hui.png");
+        background-image: url("./assets/img/comment-hui.png");
         background-size: cover;
     }
     &.icon-star.fly-action::before {
@@ -34,7 +34,7 @@
         height: 1.8rem;
         left: -2rem;
         display: inline-block;
-        background-image: url("/src/assets/img/common/star-orange.png");
+        background-image: url("./assets/img/star-orange.png");
         background-size: cover;
     }
     &.icon-comment.fly-action::before {
@@ -44,7 +44,7 @@
         height: 1.8rem;
         left: -2rem;
         display: inline-block;
-        background-image: url("/src/assets/img/common/comment-orange.png");
+        background-image: url("./assets/img/comment-orange.png");
         background-size: cover;
     }
 }

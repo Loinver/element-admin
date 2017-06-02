@@ -1,59 +1,113 @@
 <template>
-  <div class="fly-index">
-    <mt-header v-bind:title="curr_title" fixed>
-      <!--<router-link to="/" slot="left">-->
-      <!--<mt-button icon="back"></mt-button>-->
-      <!--</router-link>-->
-      <mt-button icon="more" @click="click_more" slot="right"></mt-button>
-    </mt-header>
-    <div class="page-wrap">
-
+    <div class="fly-index">
+        <mt-swipe name="banner" class="fly-swipe" :auto="4000" @change="handleChange">
+            <mt-swipe-item>
+                <router-link to="/index"><img src="../assets/img/1.jpg"></router-link>
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <router-link to="/index"><img src="../assets/img/2.jpg"></router-link>
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <router-link to="/index"><img src="../assets/img/3.jpg"></router-link>
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <router-link to="/index"><img src="../assets/img/4.jpg"></router-link>
+            </mt-swipe-item>
+            <mt-swipe-item>
+                <router-link to="/index"><img src="../assets/img/5.jpg"></router-link>
+            </mt-swipe-item>
+        </mt-swipe>
+        <div class="menu-box">
+            <router-link tag="p" :to=menu.href class="menu-list" v-for="menu in menus" v-text="menu.title"></router-link>
+        </div>
     </div>
-    <tabbar></tabbar>
-  </div>
 </template>
 
 <script>
-  import Vue from 'vue';
-  import {Header, Button} from 'mint-ui';
-  import Login from './login';
-  import Register from './register';
-  import Tabbar from './system/bottom';
-  Vue.component(Header.name, Header);
-  Vue.component(Button.name, Button);
-  export default {
-    name: 'fly-index',
-    data() {
-      return {
-        curr_title: "首页"
-      };
-    },
-    created() {
-
-    },
-    mounted() {
-    },
-    methods: {
-      click_more(){
-        console.log("点击更多了");
-      }
-    },
-    components: {
-      'login': Login,
-      'register': Register,
-      'tabbar': Tabbar
-    }
-  };
+    import Vue from 'vue';
+    import {Swipe, SwipeItem} from 'mint-ui';
+    Vue.component(Swipe.name, Swipe);
+    Vue.component(SwipeItem.name, SwipeItem);
+    export default {
+        data() {
+            return {
+                menus: [{
+                    'id': 1,
+                    'title': '租房入户',
+                    'href': '/index'
+                }, {
+                    'id': 2,
+                    'title': '学历入户',
+                    'href': '/register'
+                }, {
+                    'id': 3,
+                    'title': '投资入户',
+                    'href': '/index'
+                }, {
+                    'id': 4,
+                    'title': '纳税入户',
+                    'href': '/index'
+                }, {
+                    'id': 5,
+                    'title': '租房入户租房入户租',
+                    'href': '/index'
+                }, {
+                    'id': 6,
+                    'title': '新生婴儿入户',
+                    'href': '/index'
+                }]
+            };
+        },
+        created() {
+        },
+        mounted() {
+        },
+        methods: {
+            handleChange(index){
+                //console.log(index);
+            }
+        }
+    };
 </script>
 
-<style>
-  @import '../assets/font/iconfont.css';
+<style lang="scss">
+    .fly-swipe.mint-swipe {
+        width: 100%;
+        height: 20rem;
+    }
 
-  .page-wrap {
-    padding: 3.5rem 0;
-  }
+    .fly-swipe.mint-swipe .mint-swipe-item {
+        width: 100%;
+    }
 
-  .mint-header {
-    height: 3.5rem;
-  }
+    .fly-swipe.mint-swipe .mint-swipe-item img {
+        width: 100%;
+    }
+
+    .menu-box {
+        margin-top: 1.5rem;
+        display: flex;
+        padding: 0 1rem;
+        flex-wrap: wrap;
+
+        .menu-list {
+            width: 9rem;
+            height: 11.7rem;
+            margin: 0.5rem;
+            padding-left: 0.8rem;
+            font-size: 1.8rem;
+            line-height: 2.2rem;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 0.2rem;
+            box-shadow: 0 0.15rem 0.25rem 0 rgba(0, 0, 0, 0.08), 0px 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            @for $i from 1 through 6 {
+                &:nth-child(#{$i}) {
+                    background-image: url("../assets/img/menubg-" +$i+ ".png");
+                    background-size: cover;
+                }
+            }
+        }
+    }
 </style>
