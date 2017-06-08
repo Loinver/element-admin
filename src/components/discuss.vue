@@ -17,19 +17,24 @@
                 <p class="issue-cont" v-text="userInfo.issue_cont"></p>
                 <!--<p class="issue-cont-img"><img layer-src="../images/comment.png" src="../images/comment.png" class="cont-img" alt="内容图片"><img layer-src="../images/menubg-1.png" src="../images/menubg-1.png" class="cont-img" alt="内容图片"></p>-->
                 <p class="tr mgt-30">
-                    <span class="handle-icon icon-star fly-action" v-text="userInfo.issue_star"></span>
-                    <span class="handle-icon icon-comment fly-action" v-text="userInfo.issue_comment"></span></p>
+                    <span v-if="!userInfo.isStar" class="handle-icon icon-star" v-text="userInfo.issue_star"></span>
+                    <span v-if="userInfo.isStar" class="handle-icon icon-star fly-active" v-text="userInfo.issue_star"></span>
+                    <span v-if="!userInfo.isStar" class="handle-icon icon-comment" v-text="userInfo.issue_comment"></span>
+                    <span v-if="userInfo.isStar" class="handle-icon icon-comment fly-active" v-text="userInfo.issue_comment"></span>
+                </p>
             </div>
             <div class="issue-comment">
                 <h1 class="title">评论</h1>
-                <div class="comment-list" v-for="comment,cpmment_index in comments">
+                <div class="comment-list" v-for="comment,comment_index in comments">
                     <img class="comment-user-photo" :src=comment.user_head alt="评论用户头像">
                     <ul class="comment-detail">
                         <li class="cl"><span class="user-name" v-text="comment.user_name"></span>
                             <span v-if="comment.user_tips==1" class="user-tips tips-1" v-text="userTips[0].name"></span>
                             <span v-if="comment.user_tips==2" class="user-tips tips-2" v-text="userTips[1].name"></span>
                             <span v-if="comment.user_tips==3" class="user-tips tips-3" v-text="userTips[2].name"></span>
-                            <span class="fr mgt-5 handle-icon icon-star fly-action" v-text="comment.issue_star" @click="click_star(cpmment_index)"></span></li>
+                            <span v-if="comment.isStar" class="fr mgt-5 handle-icon icon-star fly-active" v-text="comment.issue_star" @click="click_star(comment_index)"></span>
+                            <span v-if="!comment.isStar" class="fr mgt-5 handle-icon icon-star" v-text="comment.issue_star" @click="click_star(comment_index)"></span>
+                        </li>
                         <li class="issue-time" v-text="comment.discuss_time"></li>
                         <li class="comment" v-text="comment.issue_title"></li>
                     </ul>
@@ -39,7 +44,7 @@
         <div class="comment-edit">
             <input type="text" class="edit-cont" v-model="comment_val" placeholder="请在此输入您的评论">
             <span class="icon-emoji"></span>
-            <span @click="commentHandle()" class="edit-submit"></span>
+            <span @click="commentHandle" class="edit-submit"></span>
         </div>
     </div>
 </template>
@@ -52,19 +57,21 @@
     export default {
         data() {
             return {
-                comment_val:null,
+                comment_val: null,
                 comments: [{
                     'user_name': '胡晓1',
                     'user_head': 'http://q.qlogo.cn/qqapp/101235792/E1BCE1CF05C9DE3706229FFD7E38A580/100',
                     'user_tips': '1',
                     'discuss_time': '1491464500',
                     'issue_title': '一环路怎么每天辣么堵，无语',
+                    'isStar': false,
                     'issue_star': 222,
                     'issue_comment': 999
                 }, {
                     'user_name': '胡晓2',
                     'user_head': 'http://q.qlogo.cn/qqapp/101235792/E1BCE1CF05C9DE3706229FFD7E38A580/100',
                     'user_tips': '2',
+                    'isStar': true,
                     'discuss_time': '1491464128',
                     'issue_title': '一环路怎么每天辣么堵，无语',
                     'issue_star': 22,
@@ -73,6 +80,7 @@
                     'user_name': '胡晓3',
                     'user_head': 'http://q.qlogo.cn/qqapp/101235792/E1BCE1CF05C9DE3706229FFD7E38A580/100',
                     'user_tips': '3',
+                    'isStar': true,
                     'discuss_time': '1491463928',
                     'issue_title': '一环路怎么每天辣么堵，无语',
                     'issue_star': 222,
@@ -98,6 +106,7 @@
                     'discuss_name': '胡晓',
                     'discuss_head': 'http://q.qlogo.cn/qqapp/101235792/E1BCE1CF05C9DE3706229FFD7E38A580/100',
                     'userInfo_tips': 1,
+                    'isStar':true,
                     'discuss_time': '1491464428',
                     'issue_cont': '一环路怎么每天辣么堵一环路怎么每天辣么堵一环路怎么每天辣么堵一环路怎么每天辣么堵一环路怎么每天辣么堵',
                     'issue_star': 2212,
@@ -117,7 +126,7 @@
         },
         created() {
             this.userInfo.discuss_time = fly.formatTime(this.userInfo.discuss_time);
-            for(let i = 0;i<this.comments.length;i++){
+            for (let i = 0; i < this.comments.length; i++) {
                 this.comments[i].discuss_time = fly.formatTime(this.comments[i].discuss_time);
             }
         },
@@ -126,7 +135,7 @@
         methods: {
             commentHandle() {
                 let _self = this;
-                if(_self.comment_val == null||_self.comment_val=="") {
+                if (_self.comment_val == null || _self.comment_val == "") {
                     Toast("请输入评论内容!");
                 } else {
                     let nowDate = fly.getTimer();
@@ -141,15 +150,18 @@
                         'issue_star': 0,
                         'issue_comment': 0
                     };
-                    this.comments.unshift(commentList);
+                    this.comments.push(commentList);
                     this.comment_val = "";
                 }
             },
-            click_star(comment_index) {
-                let star_now = this.comments[comment_index].issue_star;
-                console.log(star_now);
-                let star_new = 0;
-                star_new = star_now + 1;
+            click_star(index) {
+                if (this.comments[index].isStar) {
+                    this.comments[index].issue_star = this.comments[index].issue_star - 1;
+                    this.comments[index].isStar = false;
+                }else{
+                    this.comments[index].isStar = true;
+                    this.comments[index].issue_star = this.comments[index].issue_star + 1;
+                }
             }
         }
     };
@@ -157,14 +169,15 @@
 
 <style lang="scss">
     .fly-body {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 4.4rem;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
+        /*position: absolute;*/
+        /*top: 0;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        padding-bottom: 4.4rem;
+        /*overflow-y: scroll;*/
+        /*-webkit-overflow-scrolling: touch;*/
     }
+
     .issue-box {
         padding: 1.5rem 1.5rem 0.75rem;
         background-color: #FFFFFF;
@@ -225,7 +238,6 @@
     .issue-comment {
         margin-top: 1.5rem;
         background-color: #FFFFFF;
-        //margin-bottom: 4.4rem;
         .title {
             line-height: 3rem;
             font-size: 1.2rem;

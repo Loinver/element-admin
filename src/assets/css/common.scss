@@ -27,7 +27,7 @@
         background-image: url("./assets/img/comment-hui.png");
         background-size: cover;
     }
-    &.icon-star.fly-action::before {
+    &.icon-star.fly-active::before {
         content: '';
         position: absolute;
         width: 1.8rem;
@@ -37,7 +37,7 @@
         background-image: url("./assets/img/star-orange.png");
         background-size: cover;
     }
-    &.icon-comment.fly-action::before {
+    &.icon-comment.fly-active::before {
         content: '';
         position: absolute;
         width: 1.8rem;
@@ -47,4 +47,13 @@
         background-image: url("./assets/img/comment-orange.png");
         background-size: cover;
     }
+}
+.fly-select{
+    width:100%;
+    height:2.5rem;
+    border:1px solid #d2d2d2;
+    border-radius:.2rem;
+    outline:none;
+    display: inline-block;
+    margin:0.2rem 0;
 }

@@ -1,13 +1,16 @@
 //base
-body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,figcaption,figure,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,div,dl,dt,dd,ul,ol,li,pre,figcaption,figure,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
 ul,ol,li{list-style:none}
 a{text-decoration:none}
 fieldset,img{border:0}
 table{border-collapse:collapse;border-spacing:0}
 hr{border:0;height:1px}
 *{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
-input[type="text"] {-webkit-appearance: none;}
+//清除ios中input的默认样式
+input,select,
+button { -webkit-appearance: none; -webkit-user-select: none;-webkit-tap-highlight-color: transparent;}
 body{font-size:1.4rem}
+//全部是以640的基准
 $px1:.05rem;
 $px2:.1rem;
 $px3:.15rem;

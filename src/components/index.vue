@@ -18,7 +18,7 @@
             </mt-swipe-item>
         </mt-swipe>
         <div class="menu-box">
-            <router-link tag="p" :to=menu.href class="menu-list" v-for="menu in menus" v-text="menu.title"></router-link>
+            <router-link tag="p" :to=menu.href class="menu-list" v-for="menu in menus" :key="menu.id" v-text="menu.title"></router-link>
         </div>
     </div>
 </template>
@@ -34,15 +34,15 @@
                 menus: [{
                     'id': 1,
                     'title': '租房入户',
-                    'href': '/index'
+                    'href': '/login'
                 }, {
                     'id': 2,
                     'title': '学历入户',
-                    'href': '/register'
+                    'href': '/discuss'
                 }, {
                     'id': 3,
                     'title': '投资入户',
-                    'href': '/index'
+                    'href': '/infiniteScroll'
                 }, {
                     'id': 4,
                     'title': '纳税入户',
@@ -70,7 +70,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .fly-swipe.mint-swipe {
         width: 100%;
         height: 20rem;
