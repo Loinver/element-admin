@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <transition :name="transitionName">
-            <router-view class="child-view"></router-view>
+            <router-view class="tweening"></router-view>
         </transition>
     </div>
 </template>
@@ -33,8 +33,7 @@
     /**引入css内的图片必须绝对路径**/
     @import "./assets/css/base.scss";
     @import "./assets/css/common.scss";
-
-    .child-view {
+    .tweening {
         position: absolute;
         left: 0;
         top: 0;

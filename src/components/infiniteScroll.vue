@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-link to="/loadMore">加载更多</router-link>
         <ul v-infinite-scroll="loadMore"
             infinite-scroll-disabled="loading"
             infinite-scroll-distance="10">

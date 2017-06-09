@@ -57,3 +57,12 @@
     display: inline-block;
     margin:0.2rem 0;
 }
+.mint-cell-allow-right::after{
+    border:solid 0.15rem #c8c8cd;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    width: .8rem;
+    height: .8rem;
+    right: 1rem;
+    transform: translateY(-50%) rotate(45deg);
+}

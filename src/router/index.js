@@ -7,10 +7,12 @@ import Login from '@/components/login';
 import Discuss from '@/components/discuss';
 import LoadMore from '@/components/loadmore';
 import InfiniteScroll from '@/components/infiniteScroll';
+import Cell from '@/components/cell';
+import Cell_Swipe from '@/components/cell_Swipe';
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
+    mode: 'hash',
     routes: [
         {path: '*', component: Index},
         {
@@ -39,9 +41,14 @@ const router = new Router({
             component: InfiniteScroll
         },
         {
-            path: '/',
-            name: 'Index',
-            component: Index
+            path: '/cell',
+            name: 'Cell',
+            component: Cell
+        },
+        {
+            path: '/cell_Swipe',
+            name: 'Cell_Swipe',
+            component: Cell_Swipe
         }
     ]
 });
@@ -51,9 +58,9 @@ router.beforeEach((to, from, next) => {
     next();
 });
 router.afterEach(route => {
-    setTimeout(()=>{
+    setTimeout(() => {
         Indicator.close();
-    },1000)
+    }, 1000);
     console.log(`路由结束：${route.path}`)
 });
 
