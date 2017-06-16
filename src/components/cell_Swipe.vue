@@ -18,7 +18,9 @@
     Vue.component(CellSwipe.name, CellSwipe);
     export default {
         data() {
-            return {};
+            return {
+                url:"www.zaichengdu.com"
+            };
         },
         created() {
             let _self = this;
@@ -34,7 +36,6 @@
                     content: '删除',
                     style: {background: 'red', color: '#fff'},
                     handler: () => {
-                        console.log(_self);
                         MessageBox('操作成功');
                         //_self.$messagebox('删除');
                     }

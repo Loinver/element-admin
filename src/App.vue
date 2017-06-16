@@ -17,12 +17,13 @@
         },
         mounted () {
         },
-        //监听路由的路径，可以通过不同的路径去选择不同的切换效果
-        watch: {
+        watch: {//监听路由的路径，可以通过不同的路径去选择不同的切换效果
             '$route' (to, from) {
                 if (to.path == '/') {
+                    console.log(to)
                     this.transitionName = 'slide-right';
                 } else {
+                    console.log(to)
                     this.transitionName = 'slide-left';
                 }
             }
