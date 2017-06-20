@@ -1,5 +1,5 @@
 <template>
-    <div @click=handleTab class="nav2">
+    <div @click=handleTab class="footer-nav">
         <mt-tabbar v-model="selected" :value="selected">
             <mt-tab-item value="today" id="today">
                 <span slot="icon" class="iconfont icon-home"></span>
@@ -45,8 +45,8 @@
 </script>
 
 <style lang="scss">
-@import "../assets/font/iconfont.css";
+@import "../../assets/font/iconfont.css";
     .iconfont{
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 </style>

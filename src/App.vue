@@ -19,11 +19,12 @@
         },
         watch: {//监听路由的路径，可以通过不同的路径去选择不同的切换效果
             '$route' (to, from) {
-                if (to.path == '/') {
-                    console.log(to)
+                if (to.matched.length == 1) {
+                    console.log(1);
                     this.transitionName = 'slide-right';
                 } else {
                     console.log(to)
+                    console.log(2);
                     this.transitionName = 'slide-left';
                 }
             }
@@ -45,13 +46,13 @@
 
     .slide-left-enter, .slide-right-leave-active {
         opacity: 0;
-        -webkit-transform: translate(30px, 0);
-        transform: translate(30px, 0);
+        -webkit-transform: translate(100%, 0);
+        transform: translate(100%, 0);
     }
 
     .slide-left-leave-active, .slide-right-enter {
         opacity: 0;
-        -webkit-transform: translate(-30px, 0);
-        transform: translate(-30px, 0);
+        -webkit-transform: translate(-100%, 0);
+        transform: translate(-100%, 0);
     }
 </style>

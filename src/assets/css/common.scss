@@ -70,66 +70,62 @@
 }
 
 #app {
-  max-width: 420px;
+  width: 100%;
   margin: 0 auto;
   background: #fff;
+  .mint-tabbar{
+    .mint-tab-item{
+      padding: 0.25rem 0;
+    }
+
+  }
   .main {
     width: 100%;
-    margin-top: 48px;
-    padding: 10px;
-    margin-bottom: 48px;
+    margin-top: 40px;
+    padding: 0.5rem;
+    margin-bottom: 2.5rem;
   }
   .login {
     text-align: center;
     height: 100%;
     padding: 40% 10% 0;
     .el-input {
-      margin-bottom: 15px;
+      margin-bottom:1.5rem;
     }
     .el-button {
       width: 100%;
     }
   }
-  .topbar {
+  .head-nav {
     position: fixed;
-    z-index: 99999999999;
-    left: 0px;
-    top: 0px;
     width: 100%;
-    max-width: 420px;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 99999;
     .mu-appbar {
-      height: 48px;
+      height: 2.4rem;
       overflow: hidden;
       .mu-appbar-title {
-        font-size: 16px;
-        line-height: 48px;
-        height: 48px;
+        font-size: 0.8rem;
+        line-height: 2.4rem;
+        height: 2.4rem;
       }
       .left i.mu-icon {
-        font-size: 35px;
+        font-size: 1.75rem;
       }
       .material-icons {
-        line-height: 25px;
+        line-height: 1.25rem;
 
       }
     }
   }
-  .nav2 {
-    position: fixed;
-    width: 100%;
-    max-width: 420px;
-    bottom: 0px;
-    left: 0px;
-    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 999999999;
-    background: #fff;
-  }
   .imgs {
     .mu-paper {
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
     p {
-      padding: 10px;
+      padding: 0.5rem;
       margin: 0px;
       color: #666;
     }
@@ -140,11 +136,11 @@
   }
   .news {
     .mu-paper {
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
     p {
       margin: 0px;
-      padding: 10px;
+      padding: 0.5rem;
     }
     img {
       width: 100%;
@@ -152,18 +148,18 @@
   }
   .today {
     .mu-paper {
-      margin-bottom: 10px;
+      margin-bottom: 0.5rem;
     }
     h3, p {
       margin: 0px;
-      padding: 10px 10px 0;
+      padding: 0.5rem 0.5rem 0;
     }
     .imgbox {
       text-align: center;
-      margin-top: 10px;
+      margin-top: 0.5rem;
       img {
         vertical-align: text-top;
-        margin-bottom: 10px;
+        margin-bottom: 0.5rem;
         max-width: 100%;
       }
     }
@@ -174,8 +170,8 @@
     }
     i {
       position: absolute;
-      right: 5px;
-      top: 5px;
+      right: 0.25rem;
+      top: 0.25rem;
     }
   }
   .addJoke {

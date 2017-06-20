@@ -1,9 +1,11 @@
 <template>
-    <div class="topbar">
+    <div class="head-nav">
         <mt-header :title="text">
-            <router-link to="/" slot="left">
+            <!--<router-link to="/" slot="left">-->
+            <mt-button slot="left">
                 <mt-button @click="back" icon="back"></mt-button>
-            </router-link>
+            </mt-button>
+            <!--</router-link>-->
         </mt-header>
     </div>
 </template>
@@ -16,12 +18,12 @@
     export default {
         data(){
             return {
-                text: '笑话'
+                text: '历史上的今天'
             }
         },
         methods: {
             back(){
-                this.$router.go(-1)
+                this.$router.go(-1);
             }
         }
     }

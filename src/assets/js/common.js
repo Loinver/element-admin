@@ -1,114 +1,108 @@
 var fly = {
-	parseJson: function(obj) {
-		/**
-		 * 转化json
-		 */
-		return JSON.stringify(obj);
-	},
-	formatTime: function(s) {
-		/**
-		 * 格式化时间戳 秒级
-		 */
-		var dt = new Date(s * 1000);
-		var date = [
-			[dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')
-		].join(' ').replace(/(?=\b\d\b)/g, '0');
-		return date;
-	},
-	getNowDate: function() {
-		/**
-		 * 获取当前时间
-		 */
-		var now = new Date();
-		return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + "-" + now.getMinutes() + "-" + now.getSeconds();
-	},
-	countDown: function(start) {
-		/**
-		 * 计算时间差   xx天xx小时xx分xx秒
-		 */
-		var startTime = new Date(start);
-		var diff = startTime - (new Date());
-		var result;
-		if(diff >= 0) {
-			var ss = parseInt(diff / 1000); // 秒
-			var mm = 0; // 分
-			var hh = 0; // 小时
-			var dd = 0; //天
-			if(ss > 60) {
-				mm = parseInt(ss / 60);
-				ss = parseInt(ss % 60);
-				if(mm > 60) {
-					hh = parseInt(mm / 60);
-					mm = parseInt(mm % 60);
-					if(hh > 24) {
-						dd = parseInt(hh / 24);
-						hh = parseInt(hh % 24);
-					}
-				}
-			}
-			var result = "" + parseInt(ss) + "秒";
-			if(mm > 0) {
-				result = "" + parseInt(mm) + "分" + result;
-			}
-			if(hh > 0) {
-				result = "" + parseInt(hh) + "小时" + result;
-			}
-			if(dd > 0) {
-				result = "" + parseInt(dd) + "天" + result;
-			}
-		} else {
-			result = 0;
-		}
-		return result;
-	},
-	timeDiff: function(olddate) {
-		/**
-		 *	时间差
-		 */
-		var old = new Date(olddate);
-		var dateNum = (new Date()) - old;
-		var day = dateNum / 1000 / 60 / 60 / 24;
-		return Math.floor(days);
-	},
-	getTimer: function() {
-		/**
-		 * 获取时间戳  秒级
-		 */
-		return parseInt((new Date()).getTime() / 1000);
-	},
-	formatDay: function(day) {
-		/**
-		 * 格式化0000-00-00格式的时间
-		 */
-		var arr = day.split("-");
-		return arr[0] + "年" + arr[1] + "月" + arr[2] + "日";
-	},
-	format_Day: function(day) {
-		/**
-		 * 格式化yyyy年MM月dd日格式的时间
-		 */
-		return day.match(/\d+/g).join('-');
-	},
-	formatDate: function(day) {
-		/**
-		 * 格式化yyyy年MM月dd日格式的时间
-		 */
-		var dt = new Date(day);
-		//var date = [[dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')].join(' ').replace(/(?=\b\d\b)/g, '0'); // 正则补零 (略微改动)
-		dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset()); // 修正时区偏移
-		var date = dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
-		return date;
-	},
-	isDate: function(datastr) {
-		/**
-		 * 判断是否是时间格式
-		 */
-		var result = datestr.match(/((^((1[8-9]\d{2})|([2-9]\d{3}))(-)(10|12|0?[13578])(-)(3[01]|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(11|0?[469])(-)(30|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(0?2)(-)(2[0-8]|1[0-9]|0?[1-9])$)|(^([2468][048]00)(-)(0?2)(-)(29)$)|(^([3579][26]00)(-)(0?2)(-)(29)$)|(^([1][89][0][48])(-)(0?2)(-)(29)$)|(^([2-9][0-9][0][48])(-)(0?2)(-)(29)$)|(^([1][89][2468][048])(-)(0?2)(-)(29)$)|(^([2-9][0-9][2468][048])(-)(0?2)(-)(29)$)|(^([1][89][13579][26])(-)(0?2)(-)(29)$)|(^([2-9][0-9][13579][26])(-)(0?2)(-)(29)$))/);
-		if(result == null) {
-			return false;
-		}
-		return true;
-	},
+    getTimer: function () {
+        /**
+         * 获取时间戳  秒级
+         */
+        return parseInt((new Date()).getTime() / 1000);
+    },
+    getNowDate: function() {
+        /**
+         * 获取当前时间
+         */
+        var now = new Date();
+        return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + "-" + now.getMinutes() + "-" + now.getSeconds();
+    },
+    countDown: function(start) {
+        /**
+         * 计算时间差   xx天xx小时xx分xx秒
+         */
+        var startTime = new Date(start);
+        var diff = startTime - (new Date());
+        var result;
+        if(diff >= 0) {
+            var ss = parseInt(diff / 1000); // 秒
+            var mm = 0; // 分
+            var hh = 0; // 小时
+            var dd = 0; //天
+            if(ss > 60) {
+                mm = parseInt(ss / 60);
+                ss = parseInt(ss % 60);
+                if(mm > 60) {
+                    hh = parseInt(mm / 60);
+                    mm = parseInt(mm % 60);
+                    if(hh > 24) {
+                        dd = parseInt(hh / 24);
+                        hh = parseInt(hh % 24);
+                    }
+                }
+            }
+            var result = "" + parseInt(ss) + "秒";
+            if(mm > 0) {
+                result = "" + parseInt(mm) + "分" + result;
+            }
+            if(hh > 0) {
+                result = "" + parseInt(hh) + "小时" + result;
+            }
+            if(dd > 0) {
+                result = "" + parseInt(dd) + "天" + result;
+            }
+        } else {
+            result = 0;
+        }
+        return result;
+    },
+    timeDiff: function (olddate) {
+        /**
+         *    时间差
+         */
+        var old = new Date(olddate);
+        var dateNum = (new Date()) - old;
+        var day = dateNum / 1000 / 60 / 60 / 24;
+        return Math.floor(days);
+    },
+    formatTime: function (s) {
+        /**
+         * 格式化时间戳 秒级
+         */
+        var dt = new Date(s * 1000);
+        var date = [
+            [dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')
+        ].join(' ').replace(/(?=\b\d\b)/g, '0');
+        return date;
+    },
+    format_Day: function (day) {
+        /**
+         * 格式化0000-00-00格式的时间
+         */
+        var arr = day.split("-");
+        return arr[0] + "年" + arr[1] + "月" + arr[2] + "日";
+    },
+    formatDay: function (day) {
+        /**
+         * 格式化yyyy年MM月dd日格式的时间
+         */
+        return day.match(/\d+/g).join('-');
+    },
+    formatDate: function (day) {
+        /**
+         * 格式化yyyy年MM月dd日 hh:mm:ss 格式的时间
+         */
+        var dt = new Date(day);
+        //var date = [[dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')].join(' ').replace(/(?=\b\d\b)/g, '0'); // 正则补零 (略微改动)
+        dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset()); // 修正时区偏移
+        var date = dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
+        return date;
+    },
+    isDate: function (datastr) {
+        /**
+         * 判断是否是时间格式
+         */
+        var result = datestr.match(/((^((1[8-9]\d{2})|([2-9]\d{3}))(-)(10|12|0?[13578])(-)(3[01]|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(11|0?[469])(-)(30|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(0?2)(-)(2[0-8]|1[0-9]|0?[1-9])$)|(^([2468][048]00)(-)(0?2)(-)(29)$)|(^([3579][26]00)(-)(0?2)(-)(29)$)|(^([1][89][0][48])(-)(0?2)(-)(29)$)|(^([2-9][0-9][0][48])(-)(0?2)(-)(29)$)|(^([1][89][2468][048])(-)(0?2)(-)(29)$)|(^([2-9][0-9][2468][048])(-)(0?2)(-)(29)$)|(^([1][89][13579][26])(-)(0?2)(-)(29)$)|(^([2-9][0-9][13579][26])(-)(0?2)(-)(29)$))/);
+        if (result == null) {
+            return false;
+        }
+        return true;
+    },
 	isEmpty: function(str) {
 		/**
 		 * 判断是否为空
@@ -159,7 +153,7 @@ var fly = {
 		return host;
 	},
 	getUrlStr: function(name) {
-		/*
+        /**
 		 * 获取地址栏参数
 		 */
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -168,41 +162,16 @@ var fly = {
 		return null;
 	},
 	strTrim: function(str, is_global) {
-		var result;
-		result = str.replace(/(^\s+)|(\s+$)/g, "");
+        /**
+         * 清除字符串中空格
+         * params is_global == "g" 则字符串内的空格都清除掉
+         */
+        var result = str.replace(/(^\s+)|(\s+$)/g, "");
 		if(is_global.toLowerCase() == "g")
 			result = result.replace(/\s/g, "");
 		return result;
-	},
-	getCookie: function(name) {
-		/*
-		 *--------------- getCookie(name) -----------------
-		 * getCookie(name)
-		 * 功能:取得变量name的值
-		 * 参数:name,字符串.
-		 * 实例:alert(getCookie("baobao"));
-		 *--------------- getCookie(name) -----------------
-		 */
-		var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
-		if(arr != null) return unescape(arr[2]);
-		return null;
-	},
-	setCookie: function(name, value, url) {
-		/*
-		 *--------------- setCookie(name,value) -----------------
-		 * setCookie(name,value)
-		 * 功能:设置得变量name的值
-		 * 参数:name,字符串;value,字符串.
-		 * 实例:setCookie('username','baobao')
-		 *--------------- setCookie(name,value) -----------------
-		 */
-		var Days = 7; //此 cookie 将被保存 7 天
-		var exp　 = new Date();
-		exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-		document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-		location.href = url; //接收页面.
 	}
-}
+};
 /**
  * 数组排序
  * @param {name} name
@@ -248,4 +217,65 @@ Array.prototype.sorting = function() {
 		return a - b;
 	});
 };
+(function (window) {
+    /**
+     * 基于本地存储的缓存模块
+     *
+     * @param {String} key 键名
+     * @param {any} data 数据
+     * @param {Number} expires 有效期(秒), 0永久
+     * @returns {any}
+     *
+     * 使用例子：
+     * localStore('aaa', { a: 1 }); // 永久存储
+     * localStore('bbb', { b: 2 }, 3); // 存储3秒
+     *
+     * setTimeout(function() {
+         *     console.log(localStore('aaa'), localStore('bbb')); // {a: 1} {b: 2}
+         * }, 1000);
+     *
+     * setTimeout(function() {
+         *     console.log(localStore('aaa'), localStore('bbb')); // {a: 1} undefined
+         * }, 4000);
+     */
+    function localStore(key, data, expires) {
+        var localStorage = window.localStorage;
+        // 不兼容返回空
+        if (!localStorage) {
+            return undefined;
+        }
+        var now = +new Date(); // 当前时间戳
+        // 有值则存储数据
+        if (data) {
+            var storeData = {
+                data: data,
+                expires: 0 // 有效期
+            };
+            if (expires) {
+                storeData.expires = now + expires * 1000; // 到期时间戳
+            }
+            // 无法存入情况
+            try {
+                return localStorage.setItem(key, JSON.stringify(storeData));
+            } catch (er) {
+                // 不做处理统一返回
+            }
+        } else {
+            // 获取数据
+            try {
+                var storeData = JSON.parse(localStorage.getItem(key));
+                if (storeData.expires === 0 || now <= storeData.expires) {
+                    return storeData.data;
+                }
+                return localStorage.removeItem(key); // 清理过期数据
+            } catch (er) {
+                // 不做处理统一返回
+            }
+        }
+        return undefined;
+    };
+
+    // 绑定到全局
+    window.localStore = localStore;
+}(window));
 export default fly;
