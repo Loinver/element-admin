@@ -77,12 +77,10 @@
     .mint-tab-item{
       padding: 0.25rem 0;
     }
-
   }
   .main {
     width: 100%;
     margin-top: 40px;
-    padding: 0.5rem;
     margin-bottom: 2.5rem;
   }
   .login {
@@ -120,7 +118,17 @@
       }
     }
   }
+  .footer-nav {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+  }
   .imgs {
+    padding: 0.5rem;
     .mu-paper {
       margin-bottom: 0.5rem;
     }
@@ -135,6 +143,7 @@
     }
   }
   .news {
+    padding: 0.5rem;
     .mu-paper {
       margin-bottom: 0.5rem;
     }
@@ -147,6 +156,7 @@
     }
   }
   .today {
+    padding: 0.5rem;
     .mu-paper {
       margin-bottom: 0.5rem;
     }
@@ -165,6 +175,7 @@
     }
   }
   .jokelist {
+    padding: 0.5rem;
     .mu-paper {
       position: relative;
     }
@@ -177,16 +188,6 @@
   .addJoke {
     .mu-text-field {
       width: 100%;
-    }
-  }
-}
-
-html {
-  height: 100%;
-  body {
-    height: 100%;
-    #app {
-      height: 100%;
     }
   }
 }

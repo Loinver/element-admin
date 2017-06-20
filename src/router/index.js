@@ -108,7 +108,7 @@ const router = new Router({
     ]
 });
 router.beforeEach((to, from, next) => {
-    console.log('路由开始：${from.path}');
+    console.log(`路由开始：${from.path}`);
     Indicator.open('加载中...');
     next();
 });
@@ -116,7 +116,6 @@ router.afterEach(route => {
     setTimeout(() => {
         Indicator.close();
     }, 1000);
-    console.log('路由结束：${route.path}');
+    console.log(`路由结束：${route.path}`);
 });
-
 export default router;

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import Navbar from '../system/TabBar'
+    import Navbar from '../system/FootBar'
     import Topbar from '../system/TopBar'
     export default {
         components: {
