@@ -3,8 +3,8 @@
     <div class="news jokelist">
         <div v-for="item in this.JokeList" >
             <transition name="slide-fade">
-                <div class="demo-paper" :zDepth="2">
-                    <mt-button value="delete" @click="deletejoke(item.id)" color="#7d8188"></mt-button>
+                <div class="demo-paper">
+                    <mt-button type="primary" size="small" @click="deletejoke(item.id)" color="#7d8188">删除</mt-button>
                     <p>{{item.title}}</p>
                     <p>{{item.content}}</p>
                 </div>

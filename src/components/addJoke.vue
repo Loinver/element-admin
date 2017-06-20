@@ -1,9 +1,9 @@
 <template>
     <div class="addJoke">
         <mt-field v-model="newdata.title" hintText="标题" type="text" icon="home"></mt-field>
-        <mt-field v-model="newdata.content" hintText="详细内容" multiLine :rows="3" icon="comment"></mt-field>
+        <mt-field v-model="newdata.content" hintText="详细内容" icon="comment"></mt-field>
         <div class="add" style="text-align:right">
-            <mt-button label="提交" class="demo-raised-button" primary @click="sub"></mt-button>
+            <mt-button type="primary" size="small" class="demo-raised-button" primary @click="sub">提交</mt-button>
         </div>
     </div>
 </template>

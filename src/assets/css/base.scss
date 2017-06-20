@@ -36,23 +36,15 @@ hr {
 input, select,
 button {
   -webkit-appearance: none;
-  -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 //设置body的默认字体和字体大小
 body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
   font-size: 1.2rem;
-}
-//设置ios中input和select等元素点击时背景色
-body, html {
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
-
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;

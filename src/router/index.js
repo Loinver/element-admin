@@ -20,7 +20,7 @@ import addJoke from "@/components/addJoke";
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
+    mode: 'hash',
     routes: [
         {path: '*', component: Index},
         {path: '/', component: Login},
@@ -60,7 +60,7 @@ const router = new Router({
             component: Cell_Swipe
         }, {
             path: '/main',
-            name: "main",
+            name: "mains",
             component: main,
             children: [
                 {
