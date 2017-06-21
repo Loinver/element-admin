@@ -15,7 +15,6 @@ export default {
         // })
         axios.get('https://bird.ioliu.cn/v1/?url=' + url)
             .then(function (data) {
-
                 console.log(data.data.result);
                 cb(data.data.result.data)
             });

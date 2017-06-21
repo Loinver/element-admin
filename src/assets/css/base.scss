@@ -52,6 +52,28 @@ html {
   height: 100%;
 }
 
+//设置输入框placeholder样式
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: #909;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: #909;
+  opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #909;
+  opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #909;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #909;
+}
 $base: 20; //设置基准：640跟随auto20.js改变
 /*margin*/
 .mgauto {

@@ -1,4 +1,30 @@
-var fly = {
+import axios from 'axios';
+import DES from "./3DES";
+import MD5 from "./md5";
+import Base64 from "./base64";
+const fly = {
+    Axios:function () {
+        let obj = arguments[0];
+        const appid = "IOS-0512-0002";
+        const appkey = "fbe938c4bfe0a7cda1dcae7c85c7f83e37736207d637dc1c";
+        let body = obj.data ? obj.data : {};
+        let sign = DES.encrypt_string(appkey, MD5.hex_md5((new Base64()).encode(appid + JSON.stringify(body))));
+        let req = {
+            "body": body,
+            "head": {
+                "sign": sign,
+                "appid": appid
+            }
+        };
+        axios.post(obj.url, JSON.stringify(req))
+            .then(function (res) {
+                if (typeof obj.success == 'function')
+                    obj.success(res)
+            }).catch(function (err) {
+            if (typeof obj.error == 'function')
+                obj.error(err)
+        });
+    },
     getTimer: function () {
         /**
          * 获取时间戳  秒级
@@ -9,21 +35,21 @@ var fly = {
         /**
          * 获取当前时间
          */
-        var now = new Date();
+        let now = new Date();
         return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + now.getHours() + "-" + now.getMinutes() + "-" + now.getSeconds();
     },
     countDown: function(start) {
         /**
          * 计算时间差   xx天xx小时xx分xx秒
          */
-        var startTime = new Date(start);
-        var diff = startTime - (new Date());
-        var result;
+        let startTime = new Date(start);
+        let diff = startTime - (new Date());
+        let result;
         if(diff >= 0) {
-            var ss = parseInt(diff / 1000); // 秒
-            var mm = 0; // 分
-            var hh = 0; // 小时
-            var dd = 0; //天
+            let ss = parseInt(diff / 1000); // 秒
+            let mm = 0; // 分
+            let hh = 0; // 小时
+            let dd = 0; //天
             if(ss > 60) {
                 mm = parseInt(ss / 60);
                 ss = parseInt(ss % 60);
@@ -36,7 +62,7 @@ var fly = {
                     }
                 }
             }
-            var result = "" + parseInt(ss) + "秒";
+            result = "" + parseInt(ss) + "秒";
             if(mm > 0) {
                 result = "" + parseInt(mm) + "分" + result;
             }
@@ -55,17 +81,17 @@ var fly = {
         /**
          *    时间差
          */
-        var old = new Date(olddate);
-        var dateNum = (new Date()) - old;
-        var day = dateNum / 1000 / 60 / 60 / 24;
+        let old = new Date(olddate);
+        let dateNum = (new Date()) - old;
+        let days = dateNum / 1000 / 60 / 60 / 24;
         return Math.floor(days);
     },
     formatTime: function (s) {
         /**
          * 格式化时间戳 秒级
          */
-        var dt = new Date(s * 1000);
-        var date = [
+        let dt = new Date(s * 1000);
+        let date = [
             [dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')
         ].join(' ').replace(/(?=\b\d\b)/g, '0');
         return date;
@@ -74,7 +100,7 @@ var fly = {
         /**
          * 格式化0000-00-00格式的时间
          */
-        var arr = day.split("-");
+        let arr = day.split("-");
         return arr[0] + "年" + arr[1] + "月" + arr[2] + "日";
     },
     formatDay: function (day) {
@@ -87,17 +113,17 @@ var fly = {
         /**
          * 格式化yyyy年MM月dd日 hh:mm:ss 格式的时间
          */
-        var dt = new Date(day);
+        let dt = new Date(day);
         //var date = [[dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')].join(' ').replace(/(?=\b\d\b)/g, '0'); // 正则补零 (略微改动)
         dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset()); // 修正时区偏移
-        var date = dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
+        let date = dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
         return date;
     },
     isDate: function (datastr) {
         /**
          * 判断是否是时间格式
          */
-        var result = datestr.match(/((^((1[8-9]\d{2})|([2-9]\d{3}))(-)(10|12|0?[13578])(-)(3[01]|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(11|0?[469])(-)(30|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(0?2)(-)(2[0-8]|1[0-9]|0?[1-9])$)|(^([2468][048]00)(-)(0?2)(-)(29)$)|(^([3579][26]00)(-)(0?2)(-)(29)$)|(^([1][89][0][48])(-)(0?2)(-)(29)$)|(^([2-9][0-9][0][48])(-)(0?2)(-)(29)$)|(^([1][89][2468][048])(-)(0?2)(-)(29)$)|(^([2-9][0-9][2468][048])(-)(0?2)(-)(29)$)|(^([1][89][13579][26])(-)(0?2)(-)(29)$)|(^([2-9][0-9][13579][26])(-)(0?2)(-)(29)$))/);
+        let result = datestr.match(/((^((1[8-9]\d{2})|([2-9]\d{3}))(-)(10|12|0?[13578])(-)(3[01]|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(11|0?[469])(-)(30|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))(-)(0?2)(-)(2[0-8]|1[0-9]|0?[1-9])$)|(^([2468][048]00)(-)(0?2)(-)(29)$)|(^([3579][26]00)(-)(0?2)(-)(29)$)|(^([1][89][0][48])(-)(0?2)(-)(29)$)|(^([2-9][0-9][0][48])(-)(0?2)(-)(29)$)|(^([1][89][2468][048])(-)(0?2)(-)(29)$)|(^([2-9][0-9][2468][048])(-)(0?2)(-)(29)$)|(^([1][89][13579][26])(-)(0?2)(-)(29)$)|(^([2-9][0-9][13579][26])(-)(0?2)(-)(29)$))/);
         if (result == null) {
             return false;
         }
@@ -117,11 +143,11 @@ var fly = {
 		/**
 		 * 截取字符串
 		 */
-		var temp;
-		var icount = 0;
-		var patrn = /[^\x00-\xff]/;
-		var strre = "";
-		for(var i = 0; i < str.length; i++) {
+        let temp;
+        let icount = 0;
+        let patrn = /[^\x00-\xff]/;
+        let strre = "";
+		for(let i = 0; i < str.length; i++) {
 			if(icount < len - 1) {
 				temp = str.substr(i, 1);
 				if(patrn.exec(temp) == null) {
@@ -141,12 +167,12 @@ var fly = {
 		 * 获取域名
 		 * @param {Object} url
 		 */
-		var host = "null";
+        let host = "null";
 		if(typeof url == "undefined" || null == url) {
 			url = window.location.href;
 		}
-		var regex = /^\w+\:\/\/([^\/]*).*/;
-		var match = url.match(regex);
+        const regex = /^\w+\:\/\/([^\/]*).*/;
+        let match = url.match(regex);
 		if(typeof match != "undefined" && null != match) {
 			host = match[1];
 		}
@@ -156,8 +182,8 @@ var fly = {
         /**
 		 * 获取地址栏参数
 		 */
-		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-		var r = window.location.search.substr(1).match(reg);
+        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        let r = window.location.search.substr(1).match(reg);
 		if(r != null) return unescape(r[2]);
 		return null;
 	},
@@ -166,7 +192,7 @@ var fly = {
          * 清除字符串中空格
          * params is_global == "g" 则字符串内的空格都清除掉
          */
-        var result = str.replace(/(^\s+)|(\s+$)/g, "");
+        let result = str.replace(/(^\s+)|(\s+$)/g, "");
 		if(is_global.toLowerCase() == "g")
 			result = result.replace(/\s/g, "");
 		return result;
@@ -179,8 +205,8 @@ var fly = {
  */
 const sortBy = function sortBy(prop) {
 	return function(a, b) {
-		var val1 = a[prop];
-		var val2 = b[prop];
+        let val1 = a[prop];
+        let val2 = b[prop];
 		if(!isNaN(Number(val1)) && !isNaN(Number(val2))) {
 			val1 = Number(val1);
 			val2 = Number(val2);
@@ -198,15 +224,15 @@ const sortBy = function sortBy(prop) {
  * 是否是汉字
  */
 String.prototype.isChinese = function() {
-	var reg = /^[\u0391-\uFFE5]+$/;
-	//      [\u4E00-\u9FA5];   
+	const reg = /^[\u0391-\uFFE5]+$/;
+	//      [\u4E00-\u9FA5];
 	return reg.test(this);
 };
 /**
  * 是否是手机号码
  */
 String.prototype.isMobile = function() {
-	var reg = /^(13|14|15|18|17)[0-9]{9}$/;
+	const reg = /^(13|14|15|18|17)[0-9]{9}$/;
 	return reg.test(this);
 };
 /**
@@ -239,15 +265,15 @@ Array.prototype.sorting = function() {
          * }, 4000);
      */
     function localStore(key, data, expires) {
-        var localStorage = window.localStorage;
+        const localStorage = window.localStorage;
         // 不兼容返回空
         if (!localStorage) {
             return undefined;
         }
-        var now = +new Date(); // 当前时间戳
+        let now = +new Date(); // 当前时间戳
         // 有值则存储数据
         if (data) {
-            var storeData = {
+            let storeData = {
                 data: data,
                 expires: 0 // 有效期
             };
@@ -263,7 +289,7 @@ Array.prototype.sorting = function() {
         } else {
             // 获取数据
             try {
-                var storeData = JSON.parse(localStorage.getItem(key));
+                let storeData = JSON.parse(localStorage.getItem(key));
                 if (storeData.expires === 0 || now <= storeData.expires) {
                     return storeData.data;
                 }
@@ -274,7 +300,6 @@ Array.prototype.sorting = function() {
         }
         return undefined;
     };
-
     // 绑定到全局
     window.localStore = localStore;
 }(window));

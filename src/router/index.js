@@ -4,6 +4,7 @@ import {Indicator} from "mint-ui";
 //路由页面
 import Index from "@/components/index";
 import Login from "@/components/login";
+import Register from "@/components/register";
 import Discuss from "@/components/discuss";
 import LoadMore from "@/components/loadmore";
 import InfiniteScroll from "@/components/infiniteScroll";
@@ -33,6 +34,11 @@ const router = new Router({
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register
         },
         {
             path: '/discuss',
