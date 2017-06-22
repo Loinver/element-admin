@@ -44,9 +44,8 @@
     }
 </script>
 
-<style lang="scss">
-@import "../../assets/font/iconfont.css";
+<style lang="scss" scoped>
     .iconfont{
-        font-size: 1.8rem;
+        font-size: 20px;
     }
 </style>

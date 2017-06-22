@@ -21,11 +21,9 @@
             '$route' (to, from) {
                 console.log(from)
                 if (to.matched.length == 1) {
-                    console.log(1);
                     this.transitionName = 'slide-right';
                 } else {
                     console.log(to)
-                    console.log(2);
                     this.transitionName = 'slide-left';
                 }
             }
@@ -36,6 +34,7 @@
     /**引入css内的图片必须绝对路径**/
     @import "./assets/css/base.scss";
     @import "./assets/css/common.scss";
+    @import "./assets/css/iconfont.css";
     .tweening {
         position: absolute;
         left: 0;

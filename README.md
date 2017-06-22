@@ -1,1 +1,1 @@
-# 使用webpack+vue-cli搭建的一套 mint-ui  webapp模板
+# vue+vuex+axios+mint-ui  自己玩的测试项目

@@ -38,5 +38,4 @@
     };
 </script>
 <style lang="scss">
-    @import "../assets/font/iconfont.css";
 </style>

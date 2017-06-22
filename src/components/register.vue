@@ -45,19 +45,18 @@
                 })
             },
             userRegister(){
-                const urls = "http://192.168.1.169:80/cd_portal/service/CW77001";
+                const urls = "http://www.zaichengdu.com/cd_portal/service/CW77001";
                 const params = {city_name: encodeURI("成都市")};
                 fly.Axios({
                     url: urls,
                     data: params,
                     success: function (res) {
-                        console.log(res.data.body)
-                        console.log(res.data.head)
+                        console.log(res.data.body);
+
                     }, error: function (err) {
                         console.log(err)
                     }
                 })
-
             }
         }
     }

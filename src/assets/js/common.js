@@ -114,7 +114,6 @@ const fly = {
          * 格式化yyyy年MM月dd日 hh:mm:ss 格式的时间
          */
         let dt = new Date(day);
-        //var date = [[dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')].join(' ').replace(/(?=\b\d\b)/g, '0'); // 正则补零 (略微改动)
         dt.setMinutes(dt.getMinutes() - dt.getTimezoneOffset()); // 修正时区偏移
         let date = dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
         return date;
