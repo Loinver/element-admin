@@ -8,6 +8,7 @@
 
 <script>
     import "./assets/js/autoSize(20).js";
+    import fly from './assets/js/common';
     export default {
         name: 'app',
         data () {
@@ -16,14 +17,16 @@
             }
         },
         mounted () {
+            var str ="你好";
+            var ss = fly.encode(str);
+            console.log(ss)
         },
         watch: {//监听路由的路径，可以通过不同的路径去选择不同的切换效果
             '$route' (to, from) {
-                console.log(from)
-                if (to.matched.length == 1) {
+                if (to.path=="/") {
                     this.transitionName = 'slide-right';
                 } else {
-                    console.log(to)
+                    //console.log(to)
                     this.transitionName = 'slide-left';
                 }
             }

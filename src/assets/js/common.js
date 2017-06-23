@@ -1,7 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 import DES from "./3DES";
 import MD5 from "./md5";
 import Base64 from "./base64";
+import coder from "./encoder";
 const fly = {
     Axios:function () {
         let obj = arguments[0];
@@ -24,6 +25,18 @@ const fly = {
             if (typeof obj.error == 'function')
                 obj.error(err)
         });
+    },
+    encode: function (str) {
+        /**
+         * 封装的编码简单加密
+         */
+        return (new coder()).encode(str);
+    },
+    decode: function (str) {
+        /**
+         * 封装的编码简单解密
+         */
+        return (new coder()).decode(str);
     },
     getTimer: function () {
         /**
@@ -195,7 +208,63 @@ const fly = {
 		if(is_global.toLowerCase() == "g")
 			result = result.replace(/\s/g, "");
 		return result;
-	}
+	},
+    localStore:function (key, data, expires) {
+        /**
+         * 基于本地存储的缓存模块
+         *
+         * @param {String} key 键名
+         * @param {any} data 数据
+         * @param {Number} expires 有效期(秒), 0永久
+         * @returns {any}
+         *
+         * 使用例子：
+         * localStore('aaa', { a: 1 }); // 永久存储
+         * localStore('bbb', { b: 2 }, 3); // 存储3秒
+         *
+         * setTimeout(function() {
+         *     console.log(localStore('aaa'), localStore('bbb')); // {a: 1} {b: 2}
+         * }, 1000);
+         *
+         * setTimeout(function() {
+         *     console.log(localStore('aaa'), localStore('bbb')); // {a: 1} undefined
+         * }, 4000);
+         */
+        const localStorage = window.localStorage;
+        // 不兼容返回空
+        if (!localStorage) {
+            return undefined;
+        }
+        let now = +new Date(); // 当前时间戳
+        // 有值则存储数据
+        if (data) {
+            let storeData = {
+                data: data,
+                expires: 0 // 有效期
+            };
+            if (expires) {
+                storeData.expires = now + expires * 1000; // 到期时间戳
+            }
+            // 无法存入情况
+            try {
+                return localStorage.setItem(key, JSON.stringify(storeData));
+            } catch (er) {
+                // 不做处理统一返回
+            }
+        } else {
+            // 获取数据
+            try {
+                let storeData = JSON.parse(localStorage.getItem(key));
+                if (storeData.expires === 0 || now <= storeData.expires) {
+                    return storeData.data;
+                }
+                return localStorage.removeItem(key); // 清理过期数据
+            } catch (er) {
+                // 不做处理统一返回
+            }
+        }
+        return undefined;
+    }
 };
 /**
  * 数组排序
@@ -242,64 +311,4 @@ Array.prototype.sorting = function() {
 		return a - b;
 	});
 };
-(function (window) {
-    /**
-     * 基于本地存储的缓存模块
-     *
-     * @param {String} key 键名
-     * @param {any} data 数据
-     * @param {Number} expires 有效期(秒), 0永久
-     * @returns {any}
-     *
-     * 使用例子：
-     * localStore('aaa', { a: 1 }); // 永久存储
-     * localStore('bbb', { b: 2 }, 3); // 存储3秒
-     *
-     * setTimeout(function() {
-         *     console.log(localStore('aaa'), localStore('bbb')); // {a: 1} {b: 2}
-         * }, 1000);
-     *
-     * setTimeout(function() {
-         *     console.log(localStore('aaa'), localStore('bbb')); // {a: 1} undefined
-         * }, 4000);
-     */
-    function localStore(key, data, expires) {
-        const localStorage = window.localStorage;
-        // 不兼容返回空
-        if (!localStorage) {
-            return undefined;
-        }
-        let now = +new Date(); // 当前时间戳
-        // 有值则存储数据
-        if (data) {
-            let storeData = {
-                data: data,
-                expires: 0 // 有效期
-            };
-            if (expires) {
-                storeData.expires = now + expires * 1000; // 到期时间戳
-            }
-            // 无法存入情况
-            try {
-                return localStorage.setItem(key, JSON.stringify(storeData));
-            } catch (er) {
-                // 不做处理统一返回
-            }
-        } else {
-            // 获取数据
-            try {
-                let storeData = JSON.parse(localStorage.getItem(key));
-                if (storeData.expires === 0 || now <= storeData.expires) {
-                    return storeData.data;
-                }
-                return localStorage.removeItem(key); // 清理过期数据
-            } catch (er) {
-                // 不做处理统一返回
-            }
-        }
-        return undefined;
-    };
-    // 绑定到全局
-    window.localStore = localStore;
-}(window));
 export default fly;

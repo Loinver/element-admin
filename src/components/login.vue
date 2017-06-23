@@ -24,8 +24,8 @@
             }
         },
         created(){
-            this.newuser.username = localStore("userName");
-            this.newuser.password = localStore("passWord");
+            this.newuser.username = fly.localStore("userName");
+            this.newuser.password = fly.localStore("passWord");
         },
         methods: {
             userlogin(){
@@ -33,10 +33,10 @@
                 this.$store.dispatch('login', this.newuser).then(function () {
                     if (_self.$store.state.user.seccLogin) {
                         //Toast('登录成功！');
-                        localStore("userName",_self.newuser.username);
-                        localStore("passWord",_self.newuser.password);
+                        fly.localStore("userName",_self.newuser.username);
+                        fly.localStore("passWord",_self.newuser.password);
                         _self.$router.push('/today');
-                        localStorage.setItem("current_tab_nav","today");
+                        fly.localStore("current_tab_nav",fly.encode("today"));
                         _self.$store.state.user.seccLogin = 0;
                     } else {
                         Toast('登录失败！');

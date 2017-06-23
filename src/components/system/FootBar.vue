@@ -24,6 +24,7 @@
 <script>
     import Vue from "vue";
     import { Tabbar, TabItem } from 'mint-ui';
+    import fly from "../../assets/js/common";
     Vue.component(Tabbar.name, Tabbar);
     Vue.component(TabItem.name, TabItem);
     export default {
@@ -33,11 +34,11 @@
             }
         },
         created(){
-            this.selected = localStorage.getItem("current_tab_nav");
+            this.selected = fly.decode(fly.localStore("current_tab_nav"));
         },
         methods: {
             handleTab () {
-                localStorage.setItem("current_tab_nav",this.selected);
+                fly.localStore("current_tab_nav",fly.encode(this.selected));
                 this.$router.push('/' + this.selected);
             }
         }

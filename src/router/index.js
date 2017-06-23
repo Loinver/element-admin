@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import {Indicator} from "mint-ui";
+import fly from '../assets/js/common';
 //路由页面
 import Index from "@/components/index";
 import Login from "@/components/login";

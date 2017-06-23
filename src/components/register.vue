@@ -25,25 +25,10 @@
             }
         },
         created(){
-            this.newuser.username = localStore("userName");
-            this.newuser.password = localStore("passWord");
+            this.newuser.username = fly.localStore("userName");
+            this.newuser.password = fly.localStore("passWord");
         },
         methods: {
-            userlogin(){
-                const _self = this;
-                this.$store.dispatch('login', this.newuser).then(function () {
-                    if (_self.$store.state.user.seccLogin) {
-                        //Toast('登录成功！');
-                        localStore("userName", _self.newuser.username);
-                        localStore("passWord", _self.newuser.password);
-                        _self.$router.push('/today');
-                        localStorage.setItem("current_tab_nav", "today");
-                        _self.$store.state.user.seccLogin = 0;
-                    } else {
-                        Toast('登录失败！');
-                    }
-                })
-            },
             userRegister(){
                 const urls = "http://www.zaichengdu.com/cd_portal/service/CW77001";
                 const params = {city_name: encodeURI("成都市")};
