@@ -2,7 +2,6 @@ import axios from "axios";
 import DES from "./3DES";
 import MD5 from "./md5";
 import Base64 from "./base64";
-import coder from "./encoder";
 const fly = {
     Axios:function () {
         let obj = arguments[0];
@@ -30,13 +29,13 @@ const fly = {
         /**
          * 封装的编码简单加密
          */
-        return (new coder()).encode(str);
+        return (new Base64()).encode(str);
     },
     decode: function (str) {
         /**
          * 封装的编码简单解密
          */
-        return (new coder()).decode(str);
+        return (new Base64()).decode(str);
     },
     getTimer: function () {
         /**
