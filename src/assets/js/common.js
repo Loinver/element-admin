@@ -198,6 +198,23 @@ const fly = {
 		if (r != null) return unescape(r[2]);
 		return null;
 	},
+	getParam: function (str, name) {
+		/**
+		 * 获取字符串中参数
+		 */
+		let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		let r = str.substr(0).match(reg);
+		if (r != null) return decodeURI(r[2]);
+		return null;
+	},
+	toPercent: function (data) {
+		/**
+		 * 小数转百分比
+		 * @type {number}
+		 */
+		let strData = parseFloat(data) * 100;
+		return strData.toString() + "%";
+	},
 	strTrim: function (str, is_global) {
 		/**
 		 * 清除字符串中空格

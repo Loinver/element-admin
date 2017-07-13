@@ -30,18 +30,18 @@
         },
         methods: {
             userRegister(){
-                const urls = "http://www.zaichengdu.com/cd_portal/service/CW77001";
-                const params = {city_name: encodeURI("成都市")};
-                fly.Axios({
-                    url: urls,
-                    data: params,
-                    success: function (res) {
-                        console.log(res.data.body);
-
-                    }, error: function (err) {
-                        console.log(err)
-                    }
-                })
+//                const urls = "http://www.zaichengdu.com/cd_portal/service/CW77001";
+//                const params = {city_name: encodeURI("成都市")};
+//                fly.Axios({
+//                    url: urls,
+//                    data: params,
+//                    success: function (res) {
+//                        console.log(res.data.body);
+//
+//                    }, error: function (err) {
+//                        console.log(err)
+//                    }
+//                })
             }
         }
     }

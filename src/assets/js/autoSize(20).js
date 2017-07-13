@@ -1,8 +1,3 @@
-/*
- * @description: 响应式布局JS
- * @author: 郑小芳
- * @update: 郑小芳 (2016-09-20)
- */
 !(function(win, doc) {
 	function setFontSize() {
 		var winWidth = document.documentElement.clientWidth;
@@ -12,12 +7,12 @@
 	var timer = null;
 	win.addEventListener(evt, function() {
 		clearTimeout(timer);
-		timer = setTimeout(setFontSize, 300);
+		timer = setTimeout(setFontSize, 100);
 	}, false);
 	win.addEventListener("pageshow", function(e) {
 		if(e.persisted) {
 			clearTimeout(timer);
-			timer = setTimeout(setFontSize, 300);
+			timer = setTimeout(setFontSize, 100);
 		}
 	}, false);
 	setFontSize();

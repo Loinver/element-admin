@@ -1,30 +1,51 @@
-//重置padding和margin为0
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, div, dl, dt, dd, ul, ol, li, pre, figcaption, figure, fieldset, legend, button, input, textarea, th, td {
+/* 清除内外边距 */
+body, h1, h2, h3, h4, h5, h6, hr, p, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+button, input, textarea, /* form elements 表单元素 */
+th, td { /* table elements 表格元素 */
   margin: 0;
-  padding: 0
+  padding: 0;
 }
-//清除列表的样式
-ul, ol, li {
-  list-style: none
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
 }
-//清除a标签的下划线
+
+em {
+  font-style: normal;
+}
+
+/* 重置列表元素 */
+ul, ol {
+  list-style: none;
+}
+
+/* 重置文本格式元素 */
 a {
-  text-decoration: none
+  text-decoration: none;
 }
-//设置表单分组元素和图片元素的边框为0
-fieldset, img {
-  border: 0
+
+a:hover {
+  text-decoration: underline;
 }
-//重置表格的边框合并为一条边框，表格边框间隙为0
+
+img {
+  border: none;
+}
+
+/* 重置表格元素 */
 table {
   border-collapse: collapse;
-  border-spacing: 0
+  border-spacing: 0;
 }
-//设置水平线的高度
+
+/* 重置 hr */
 hr {
-  border: 0;
-  height: 1px
+  border: none;
+  height: 1px;
 }
+
 //设置所有元素盒模型宽度即为设置宽度，padding和border影响实际宽度
 * {
   -webkit-box-sizing: border-box;
@@ -34,17 +55,23 @@ hr {
 
 //清除ios中input的默认样式
 input, select,
-button {
+button, textarea {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
 }
+
+@font-face {
+  font-family: 'webfont';
+  src: url('//at.alicdn.com/t/djnq6u8bq1bawcdi.ttf') format('truetype'); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+
 //设置body的默认字体和字体大小
 body {
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
-  font-size: 1.2rem;
-  overflow: auto;
+  font-family: "webfont", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+  line-height: 1;
   -webkit-overflow-scrolling: touch;
 }
+
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -74,6 +101,7 @@ html {
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #a2a2a2;
 }
+
 $base: 20; //设置基准：640跟随auto20.js改变
 /*margin*/
 .mgauto {
@@ -220,6 +248,7 @@ $box-list: (pd, padding), (pdt, padding-top), (pdb, padding-bottom), (pdl, paddi
 .c-fff {
   color: #ffffff;
 }
+
 .fl {
   float: left
 }

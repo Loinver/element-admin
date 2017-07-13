@@ -6,6 +6,7 @@
         <mt-field label="用户名：" placeholder="请输入用户名" v-model="newuser.username"></mt-field>
         <mt-field label="密码：" placeholder="请输入密码" type="password" v-model="newuser.password"></mt-field>
         <mt-button type="primary" class="col-1 fs-25" @click="userlogin">登陆</mt-button>
+        <img src="../assets/img/1.jpg"/>
     </div>
 </template>
 
