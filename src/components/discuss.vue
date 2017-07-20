@@ -139,7 +139,7 @@
                     Toast("请输入评论内容!");
                 } else {
                     let nowDate = fly.getTimer();
-                    let userName = '张三';
+                    let userName = '张三三';
                     let userHead = 'http://q.qlogo.cn/qqapp/101235792/E1BCE1CF05C9DE3706229FFD7E38A580/100';
                     let commentList = {
                         'user_name': userName,
