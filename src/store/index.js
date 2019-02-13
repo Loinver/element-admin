@@ -1,23 +1,17 @@
-/**
- * Created by Linyer on 2017/6/12.
- */
-import Vue from 'vue';
-import Vuex from 'vuex';
-import news from './modules/news';
-import joke from './modules/joke';
-import imgs from './modules/imgs'
-import jokelist from './modules/jokelist'
-import today from './modules/today'
+import Vue from 'vue'
+import Vuex from 'vuex'
+import app from './modules/app'
 import user from './modules/user'
+import getters from './getters'
 
-Vue.use(Vuex);
-export default  new Vuex.Store({
-    modules:{
-        joke,
-        news,
-        imgs,
-        jokelist,
-        today,
-        user
-    }
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  modules: {
+    app,
+    user
+  },
+  getters
 })
+
+export default store
