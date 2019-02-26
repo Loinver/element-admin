@@ -22,6 +22,8 @@ Vue.use(Router);
     breadcrumb: false            if false, the item will hidden in breadcrumb(default is true)
   }
  * */
+// 所有权限通用路由表
+// 如首页和登录页和一些不用权限的公用页面
 export const constantRouterMap = [
   {
     path: '/login',
@@ -38,10 +40,13 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dashboard',
     name: 'Dashboard',
-    hidden: true,
     children: [{
       path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
+      component: () => import('@/views/dashboard/index'),
+      meta: {
+        title: '仪表盘',
+        icon: 'dashboard'
+      }
     }]
   },
   {
@@ -74,7 +79,6 @@ export const constantRouterMap = [
       }
     ]
   },
-
   {
     path: '/form',
     component: Layout,
@@ -90,7 +94,21 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  {
+    path: '/setting',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'setting',
+        component: () => import('@/views/setting/index'),
+        meta: {
+          title: '用户设置',
+          icon: 'gear'
+        }
+      }
+    ]
+  },
   {
     path: '/nested',
     component: Layout,
@@ -105,31 +123,31 @@ export const constantRouterMap = [
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: { title: '菜单1' },
+        meta: {title: '菜单1'},
         children: [
           {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: { title: '菜单1-1' }
+            meta: {title: '菜单1-1'}
           },
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
-            meta: { title: '菜单1-2' },
+            meta: {title: '菜单1-2'},
             children: [
               {
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
-                meta: { title: '菜单1-2-1' }
+                meta: {title: '菜单1-2-1'}
               },
               {
                 path: 'menu1-2-2',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
-                meta: { title: '菜单1-2-2' }
+                meta: {title: '菜单1-2-2'}
               }
             ]
           },
@@ -137,14 +155,14 @@ export const constantRouterMap = [
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
-            meta: { title: '菜单1-3' }
+            meta: {title: '菜单1-3'}
           }
         ]
       },
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: { title: '菜单2' }
+        meta: {title: '菜单2'}
       }
     ]
   },
@@ -157,6 +175,6 @@ export const constantRouterMap = [
 
 export default new Router({
   // mode: 'history', // 后端支持可开
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({y: 0}),
   routes: constantRouterMap
 });

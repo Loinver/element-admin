@@ -38,7 +38,7 @@
 </template>
 
 <script>
-  import { isvalidUsername } from '@/utils/validate';
+  import {isvalidUsername} from '@/utils/validate';
 
   export default {
     name: 'Login',
@@ -102,7 +102,7 @@
             this.$store.dispatch('Login', this.loginForm)
               .then(() => {
                 this.loading = false;
-                this.$router.push({ path: this.redirect || '/' });
+                this.$router.push({path: this.redirect || '/'});
               })
               .catch(() => {
                 this.loading = false;
@@ -129,14 +129,14 @@
       width: 85%;
       input {
         background: transparent;
-        border: 0px;
+        border: 0;
         -webkit-appearance: none;
-        border-radius: 0px;
+        border-radius: 0;
         padding: 12px 5px 12px 15px;
         color: $light_gray;
         height: 47px;
         &:-webkit-autofill {
-          -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
+          -webkit-box-shadow: 0 0 0 1000px $bg inset !important;
           -webkit-text-fill-color: #fff !important;
         }
       }
@@ -188,7 +188,6 @@
     }
     .title {
       font-size: 26px;
-      font-weight: 400;
       color: $light_gray;
       margin: 0px auto 40px auto;
       text-align: center;
