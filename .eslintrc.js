@@ -37,6 +37,7 @@ module.exports = {
     }],
     'no-tabs': 0,
     'linebreak-style': 0,
+    'arrow-parens':0,
     'import/no-unresolved': 0, // 使用alias
     // parseInt 等函数都有一个基数根，一般是简写了的，默认为10进制   parseInt的第二个参数有四种:2、8、10、16，分别对应二进制、八进制、十进制、十六进制；
     'indent': [0, 2, { 'SwitchCase': 1 }], //

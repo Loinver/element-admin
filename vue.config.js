@@ -37,6 +37,7 @@ module.exports = {
   // 反向代理
   devServer: {
     port: 8010,
+    hotOnly:true,
     proxy: {
       '/api': {
         target: '192.168.34.164:8010',
