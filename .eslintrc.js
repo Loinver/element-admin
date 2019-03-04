@@ -26,6 +26,8 @@ module.exports = {
         'peerDependencies': false
       }
     ],
+    'space-before-function-paren':0,
+    'operator-linebreak':0,
     'object-shorthand': 0, // 强制对象字面量缩写语法
     'object-curly-spacing': 0, // 对象开始必须空格
     'space-before-blocks': 0, // 代码块开始必须空格
@@ -36,11 +38,16 @@ module.exports = {
       'args': 'none'
     }],
     'no-tabs': 0,
+    'no-else-return': 0,
+    'dot-notation':0,
+    'implicit-arrow-linebreak': 0,
     'linebreak-style': 0,
-    'arrow-parens':0,
+    'arrow-parens': 0,
     'import/no-unresolved': 0, // 使用alias
     // parseInt 等函数都有一个基数根，一般是简写了的，默认为10进制   parseInt的第二个参数有四种:2、8、10、16，分别对应二进制、八进制、十进制、十六进制；
-    'indent': [0, 2, { 'SwitchCase': 1 }], //
+    'indent': [0, 2, {
+      'SwitchCase': 1
+    }], //
     'comma-dangle': 0, // 对象末key必须带,逗号  禁止掉
     'prefer-template': 'off', // ESLint总是推荐用ES6的Template String来拼接字符串，而不能用+号
     'semi': [0], // 关闭语句强制分号结尾

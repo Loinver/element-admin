@@ -1,14 +1,22 @@
 import axios from 'axios';
-import { Message, MessageBox } from 'element-ui';
-import store from '../store/index';
-import { getToken } from '@/utils/auth';
+import {
+  Message,
+  MessageBox
+} from 'element-ui';
+import store from '../store';
+import {
+  getToken
+} from '@/utils/auth';
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? 'https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin' : process.env.VUE_APP_CURRENTMODE === 'uat' ? 'https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin' : 'https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin', // api 的 baseUrl
+  baseURL: process.env.NODE_ENV === 'development' ?
+    'https://www.easy-mock.com/mock/5c7794e135c5e14db980feed/admin' : process.env.VUE_APP_CURRENTMODE ===
+    'uat' ? 'https://www.easy-mock.com/mock/5c7794e135c5e14db980feed/admin' : 'https://www.easy-mock.com/mock/5c7794e135c5e14db980feed/admin', // api 的 baseUrl
   timeout: 10000 // 请求超时时间
 });
 
+const timeOut = 10; // 超时时间设置 单位：秒
 // request拦截器
 service.interceptors.request.use(
   (config) => {
@@ -35,20 +43,19 @@ service.interceptors.response.use(
       Message({
         message: res.message,
         type: 'error',
-        duration: 10 * 1000
+        duration: timeOut * 1000
       });
 
       // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         MessageBox.confirm(
-          '你已被登出，可以取消继续留在该页面，或者重新登录',
-          '确定登出',
-          {
-            confirmButtonText: '重新登录',
-            cancelButtonText: '取消',
-            type: 'warning'
-          }
-        )
+            '你已被登出，可以取消继续留在该页面，或者重新登录',
+            '确定登出', {
+              confirmButtonText: '重新登录',
+              cancelButtonText: '取消',
+              type: 'warning'
+            }
+          )
           .then(() => {
             store.dispatch('FedLogOut')
               .then(() => {
@@ -56,7 +63,10 @@ service.interceptors.response.use(
               });
           });
       }
-      return Promise.reject(new Error('error'));
+      return Promise.reject(new Error(error));
+    }
+    if (process.env.NODE_ENV === 'development') {
+      return response
     }
     return response.data;
   },
@@ -65,7 +75,7 @@ service.interceptors.response.use(
     Message({
       message: error.message,
       type: 'error',
-      duration: 10 * 1000
+      duration: timeOut * 1000
     });
     return Promise.reject(new Error(error));
   }
