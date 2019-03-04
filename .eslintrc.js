@@ -26,8 +26,8 @@ module.exports = {
         'peerDependencies': false
       }
     ],
-    'space-before-function-paren':0,
-    'operator-linebreak':0,
+    'space-before-function-paren': 0,
+    'operator-linebreak': 0,
     'object-shorthand': 0, // 强制对象字面量缩写语法
     'object-curly-spacing': 0, // 对象开始必须空格
     'space-before-blocks': 0, // 代码块开始必须空格
@@ -37,9 +37,11 @@ module.exports = {
       // 参数不检查
       'args': 'none'
     }],
+    'arrow-body-style': 0,
+    'vue/no-use-v-if-with-v-for': 0, // v-for 不能与v-if 一行使用
     'no-tabs': 0,
     'no-else-return': 0,
-    'dot-notation':0,
+    'dot-notation': 0,
     'implicit-arrow-linebreak': 0,
     'linebreak-style': 0,
     'arrow-parens': 0,

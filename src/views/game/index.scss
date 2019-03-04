@@ -1,0 +1,532 @@
+.game-container {
+  width: 5760px;
+  height: 1080px;
+  background: #430094 url("./images/main-bg.png") no-repeat center left;
+  background-size: auto 1080px;
+  overflow: hidden;
+  position: relative;
+  .prize-container {
+    width: 100%;
+    height: 100%;
+    padding: 94px 118px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    .prize-mgt {
+      margin-top: 89px;
+    }
+    .prize-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      -webkit-box-pack: justify;
+      -webkit-box-align: center;
+      align-items: center;
+      flex-shrink: 0;
+      .prize-item {
+        position: relative;
+        width: 158px;
+        height: 158px;
+        text-align: center;
+        &.item-odd:before {
+          content: '';
+          width: 176px;
+          height: 176px;
+          background-image: url("./images/default-1.png");
+          background-size: cover;
+          position: absolute;
+          left: -10px;
+          top: -10px;
+        }
+        &.item-even:before {
+          content: '';
+          width: 176px;
+          height: 176px;
+          background-image: url("./images/default-2.png");
+          background-size: cover;
+          position: absolute;
+          left: -9px;
+          top: -9px;
+        }
+        &.active:before {
+          content: '';
+          width: 216px;
+          height: 216px;
+          background-image: url("./images/active-2.png");
+          background-size: cover;
+          position: absolute;
+          left: -29px;
+          top: -29px;
+        }
+        &.active:after {
+          content: '';
+          background-image: url("./images/active-1.png");
+          background-size: cover;
+          position: absolute;
+          animation: activeScale 1.5s infinite linear;
+          z-index: 1000;
+        }
+        @keyframes activeScale {
+          0% {
+            width: 234px;
+            height: 234px;
+            left: -38px;
+            top: -38px;
+          }
+          50% {
+            width: 250px;
+            height: 250px;
+            left: -44px;
+            top: -44px;
+          }
+          100% {
+            width: 234px;
+            height: 234px;
+            left: -38px;
+            top: -38px;
+          }
+        }
+        .prize-img {
+          width: 100%;
+          height: 100%;
+          display: inline-block;
+          vertical-align: top;
+        }
+        .prize-name {
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+          font-size: 16px;
+          color: #ffffff;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: inline-block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.25);
+        }
+        .icon-arrow {
+          width: 55px;
+          height: 54px;
+          background-image: url("./images/icon-arrow.png");
+          background-size: cover;
+          position: absolute;
+          &.arrow-right {
+            left: 185px;
+            top: 48px;
+            transform: rotate(90deg);
+          }
+          &.arrow-left {
+            left: 185px;
+            top: 50px;
+            transform: rotate(-90deg);
+          }
+        }
+      }
+      &.center {
+        .left {
+          .left-top {
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: reverse;
+            -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            align-items: center;
+            width: 2102px;
+            padding-right: 66px;
+          }
+          .left-bottom {
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            align-items: center;
+            width: 2102px;
+            padding-right: 66px;
+          }
+        }
+        .right {
+          .right-top {
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: reverse;
+            flex-direction: row-reverse;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            align-items: center;
+            width: 2102px;
+            padding-left: 66px;
+          }
+          .right-bottom {
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            align-items: center;
+            width: 2102px;
+            padding-left: 66px;
+          }
+        }
+      }
+      &.bottom {
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  .game-box {
+    width: 1262px;
+    height: 366px;
+    position: absolute;
+    left: 2250px;
+    top: 270px;
+    z-index: 999;
+    &::before {
+      content: '';
+      width: 1262px;
+      height: 366px;
+      background-image: url("./images/lottery-box1.png");
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .qr-code {
+      width: 208px;
+      height: 208px;
+      position: absolute;
+      //top: 73px;
+      //left: 586px;
+      top: 58px;
+      left: 569px;
+      img {
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+      }
+    }
+    .user-box {
+      width: 260px;
+      height: 80px;
+      position: absolute;
+      left: 585px;
+      top: 300px;
+    }
+  }
+  .game-box-front {
+    width: 1262px;
+    height: 266px;
+    position: absolute;
+    left: 2250px;
+    top: 270px;
+    z-index: 1000;
+    &::after {
+      content: '';
+      width: 1262px;
+      height: 179px;
+      background-image: url("./images/lottery-box2.png");
+      position: absolute;
+      top: 366px;
+      left: 0;
+      z-index: 99;
+    }
+    .winner-box {
+      width: 414px;
+      height: 539px;
+      background-image: url("./images/winning-list.png");
+      background-size: cover;
+      position: absolute;
+      left: 15px;
+      top: 20px;
+      z-index: 999;
+      overflow: hidden;
+      .winner-wrap {
+        width: 310px;
+        height: 350px;
+        margin: 75px 25px 0 65px;
+        overflow: hidden;
+      }
+      ul {
+        .winner-list {
+          color: #ffffff;
+          font-size: 14px;
+          height: 36px;
+          line-height: 36px;
+        }
+      }
+    }
+    .game-ing {
+      width: 350px;
+      height: 450px;
+      position: absolute;
+      left: 852px;
+      top: 50px;
+      .tips {
+        height: 42px;
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        &.tips-go {
+          width: 59px;
+          background-image: url("./images/tips-go.png");
+          background-size: cover;
+        }
+        &.tips-ready {
+          width: 109px;
+          background-image: url("./images/tips-ready.png");
+          background-size: cover;
+        }
+      }
+      .arrow {
+        width: 61px;
+        height: 100px;
+        position: absolute;
+        left: 50%;
+        background-size: cover;
+        transform: translate(-50%, 0);
+        animation: arrowMove 1s infinite linear;
+        @keyframes arrowMove {
+          0% {
+            background: url("./images/arrow-top3.png") no-repeat;
+            background-size: contain;
+            top: 150px;
+          }
+          50% {
+            background: url("./images/arrow-top2.png") no-repeat;
+            background-size: contain;
+            top: 100px;
+          }
+          100% {
+            background: url("./images/arrow-top1.png") no-repeat;
+            background-size: contain;
+            top: 50px;
+          }
+        }
+      }
+      .ball-table {
+        width: 206px;
+        height: 85px;
+        background-image: url("./images/th2.png");
+        background-size: cover;
+        position: absolute;
+        left: 50%;
+        bottom: 68px;
+        z-index: 1000;
+        transform: translate(-50%, 0);
+      }
+      .ball-pillar {
+        width: 112px;
+        height: 86px;
+        background-image: url("./images/th1.png");
+        background-size: cover;
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        z-index: 999;
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+  /deep/ .lottery-user {
+    width: 102px;
+    height: 102px;
+    position: absolute;
+    background-image: url("./images/user-head-bg.png");
+    background-size: cover;
+    z-index: 999;
+    img {
+      width: 72px;
+      height: 72px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 100%;
+    }
+    &.user-small {
+      width: 82px;
+      height: 82px;
+      position: absolute;
+      background-image: url("./images/user-head-bg.png");
+      background-size: cover;
+      z-index: 999;
+      img {
+        width: 72px;
+        height: 72px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 100%;
+      }
+    }
+  }
+  .animation-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    .animation {
+      width: 1920px;
+      height: 1080px;
+      position: absolute;
+      &.left {
+        background-image: url("./images/animation1.png");
+        background-size: cover;
+        animation: animationOne 3s infinite linear;
+      }
+      &.middle {
+        background-image: url("./images/animation2.png");
+        background-size: cover;
+        animation: animationTwo 5s infinite linear;
+      }
+      &.right {
+        background-image: url("./images/animation1.png");
+        background-size: cover;
+        animation: animationThr 3s infinite linear;
+      }
+    }
+    @keyframes animationOne {
+      0% {
+        top: -1080px;
+        left: 0;
+      }
+      100% {
+        top: 1080px;
+        left: -1920px;
+      }
+    }
+    @keyframes animationTwo {
+      0% {
+        top: -1080px;
+        left: 1920px;
+      }
+      100% {
+        top: 1080px;
+        left: 0;
+      }
+    }
+    @keyframes animationThr {
+      0% {
+        top: -1080px;
+        left: 3840px;
+      }
+      100% {
+        top: 1080px;
+        left: 1920px;
+      }
+    }
+  }
+  .lottery-result {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    .winner-user {
+      width: 1432px;
+      height: 701px;
+      background-image: url("./images/winner-bg.png");
+      background-size: cover;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      .title {
+        width: 705px;
+        height: 243px;
+        background-image: url("./images/winning-title.png");
+        background-size: cover;
+        position: absolute;
+        left: 50%;
+        margin-left: -352px;
+        top: -130px;
+      }
+      .user-info {
+        width: 100%;
+        position: relative;
+        .user {
+          width: 318px;
+          height: 322px;
+          background-image: url("./images/winning-user-bg.png");
+          background-size: cover;
+          position: absolute;
+          left: 510px;
+          top: 100px;
+          z-index: 2;
+          img {
+            width: 262px;
+            height: 263px;
+            position: relative;
+            left: 28px;
+            top: 28px;
+            border-radius: 5px;
+          }
+        }
+        .prize {
+          width: 318px;
+          height: 318px;
+          background-image: url("./images/winning-prize-bg.png");
+          background-size: cover;
+          position: absolute;
+          left: 750px;
+          top: 140px;
+          img {
+            width: 262px;
+            height: 262px;
+            position: relative;
+            left: 28px;
+            top: 28px;
+            border-radius: 5px;
+          }
+          .prize-name {
+            width: 262px;
+            line-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: absolute;
+            bottom: 28px;
+            left: 28px;
+            text-align: center;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.4);
+          }
+        }
+        .winner-txt {
+          width: 100%;
+          color: #ffffff;
+          text-align: center;
+          font-size: 36px;
+          position: absolute;
+          top: 470px;
+        }
+      }
+    }
+  }
+}
+

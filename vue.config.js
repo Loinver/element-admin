@@ -1,3 +1,4 @@
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const path = require('path');
 
 function resolve(dir) {
@@ -9,6 +10,7 @@ module.exports = {
   publicPath: process.env.baseUrl,
   assetsDir: 'static',
   chainWebpack: (config) => {
+    // :todo 有条件的话，可以抽离element-ui 等比较大的依赖到cdn上
     config.resolve.alias
       .set('@$', resolve('src'))
       .set('assets', resolve('src/assets'))
@@ -33,11 +35,27 @@ module.exports = {
       .exclude
       .add(resolve('src/icons'))
       .end();
+    // 仅仅在uat 和生产环境生成文件大小日志
+    if (process.env.NODE_ENV !== 'development') {
+      config.plugin('analyzer')
+        .use(BundleAnalyzerPlugin)
+        .end();
+    }
+    // 压缩图片
+    config.module
+        .rule("image-webpack-loader")
+        .test(/\.(gif|png|jpe?g|svg)$/i)
+        .use("file-loader")
+        .loader("image-webpack-loader")
+        .tap(() => ({
+          disable: process.env.NODE_ENV !== "production"
+        }))
+        .end();
   },
   // 反向代理
   devServer: {
     port: 8010,
-    hotOnly:true,
+    hotOnly: true,
     proxy: {
       '/api': {
         target: '192.168.34.164:8010',
@@ -47,5 +65,10 @@ module.exports = {
         }
       }
     }
-  }
+  },
+
+  runtimeCompiler: true,
+  productionSourceMap: undefined,
+  parallel: undefined,
+  css: undefined
 };

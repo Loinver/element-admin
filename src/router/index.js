@@ -32,7 +32,7 @@ export const constantRouterMap = [
   },
   {
     path: '/404',
-    component: () => import('@/views/404'),
+    component: () => import(/* webpackChunkName: "404" */ '@/views/404'),
     hidden: true
   },
   {
@@ -42,7 +42,7 @@ export const constantRouterMap = [
     name: 'Dashboard',
     children: [{
       path: 'dashboard',
-      component: () => import('@/views/dashboard/index'),
+      component: () => import(/* webpackChunkName: "dashbpard" */ '@/views/dashboard/index'),
       meta: {
         title: '仪表盘',
         icon: 'dashboard'
@@ -62,7 +62,7 @@ export const constantRouterMap = [
       {
         path: 'table',
         name: 'Table',
-        component: () => import('@/views/table/index'),
+        component: () => import(/* webpackChunkName: "table" */ '@/views/table/index'),
         meta: {
           title: '表格',
           icon: 'table'
@@ -71,12 +71,18 @@ export const constantRouterMap = [
       {
         path: 'tree',
         name: 'Tree',
-        component: () => import('@/views/tree/index'),
+        component: () => import(/* webpackChunkName: "tree" */ '@/views/tree/index'),
         meta: {
           title: '树',
           icon: 'tree'
         }
-      }
+      },
+      {
+        path: 'game',
+        name: 'game',
+        component: () => import(/* webpackChunkName: "game" */ '@/views/game/index.vue'),
+        meta: {title: "转转乐", icon: 'tree'}
+      },
     ]
   },
   {
@@ -86,7 +92,7 @@ export const constantRouterMap = [
       {
         path: 'index',
         name: 'Form',
-        component: () => import('@/views/form/index'),
+        component: () => import(/* webpackChunkName: "form" */ '@/views/form/index'),
         meta: {
           title: '表单',
           icon: 'form'
@@ -101,7 +107,7 @@ export const constantRouterMap = [
       {
         path: 'index',
         name: 'setting',
-        component: () => import('@/views/setting/index'),
+        component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index'),
         meta: {
           title: '用户设置',
           icon: 'gear'
@@ -121,7 +127,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
+        component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
         meta: {title: '菜单1'},
         children: [
