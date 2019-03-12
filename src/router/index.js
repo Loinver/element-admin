@@ -24,8 +24,7 @@ Vue.use(Router);
  * */
 // 所有权限通用路由表
 // 如首页和登录页和一些不用权限的公用页面
-export const constantRouterMap = [
-  {
+export const constantRouterMap = [{
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index'),
     hidden: true
@@ -42,11 +41,13 @@ export const constantRouterMap = [
     name: 'Dashboard',
     children: [{
       path: 'dashboard',
-      component: () => import(/* webpackChunkName: "dashbpard" */ '@/views/dashboard/index'),
+      component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index'),
       meta: {
-        title: '仪表盘',
+        title: '首页',
         icon: 'dashboard'
-      }
+      },
+      noCache: true,
+      affix: true
     }]
   },
   {
@@ -58,8 +59,7 @@ export const constantRouterMap = [
       title: '例子',
       icon: 'example'
     },
-    children: [
-      {
+    children: [{
         path: 'table',
         name: 'Table',
         component: () => import(/* webpackChunkName: "table" */ '@/views/table/index'),
@@ -81,39 +81,38 @@ export const constantRouterMap = [
         path: 'game',
         name: 'game',
         component: () => import(/* webpackChunkName: "game" */ '@/views/game/index.vue'),
-        meta: {title: "转转乐", icon: 'tree'}
+        meta: {
+          title: "转转乐",
+          icon: 'tree'
+        }
       },
     ]
   },
   {
     path: '/form',
     component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import(/* webpackChunkName: "form" */ '@/views/form/index'),
-        meta: {
-          title: '表单',
-          icon: 'form'
-        }
+    children: [{
+      path: 'index',
+      name: 'Form',
+      component: () => import(/* webpackChunkName: "form" */ '@/views/form/index'),
+      meta: {
+        title: '表单',
+        icon: 'form'
       }
-    ]
+    }]
   },
   {
     path: '/setting',
     component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'setting',
-        component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index'),
-        meta: {
-          title: '用户设置',
-          icon: 'gear'
-        }
+    children: [{
+      path: 'index',
+      name: 'setting',
+      component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index'),
+      meta: {
+        title: '用户设置',
+        icon: 'gear'
       }
-    ]
+    }]
   },
   {
     path: '/nested',
@@ -124,36 +123,43 @@ export const constantRouterMap = [
       title: '嵌套路由',
       icon: 'nested'
     },
-    children: [
-      {
+    children: [{
         path: 'menu1',
         component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: {title: '菜单1'},
-        children: [
-          {
+        meta: {
+          title: '菜单1'
+        },
+        children: [{
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: {title: '菜单1-1'}
+            meta: {
+              title: '菜单1-1'
+            }
           },
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
-            meta: {title: '菜单1-2'},
-            children: [
-              {
+            meta: {
+              title: '菜单1-2'
+            },
+            children: [{
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
-                meta: {title: '菜单1-2-1'}
+                meta: {
+                  title: '菜单1-2-1'
+                }
               },
               {
                 path: 'menu1-2-2',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
-                meta: {title: '菜单1-2-2'}
+                meta: {
+                  title: '菜单1-2-2'
+                }
               }
             ]
           },
@@ -161,14 +167,18 @@ export const constantRouterMap = [
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
-            meta: {title: '菜单1-3'}
+            meta: {
+              title: '菜单1-3'
+            }
           }
         ]
       },
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
-        meta: {title: '菜单2'}
+        meta: {
+          title: '菜单2'
+        }
       }
     ]
   },
@@ -181,6 +191,26 @@ export const constantRouterMap = [
 
 export default new Router({
   // mode: 'history', // 后端支持可开
-  scrollBehavior: () => ({y: 0}),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRouterMap
 });
+export const asyncRouterMap = [{
+    path: '/test',
+    // component: Layout,
+    redirect: '/test',
+    alwaysShow: true, // will always show the root menu
+    component: () => import(/* webpackChunkName: "test" */ '@/views/test/index'),
+    meta: {
+      title: '测试权限',
+      icon: 'gear',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    }
+  },
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }
+]

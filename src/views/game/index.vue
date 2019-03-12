@@ -1,6 +1,6 @@
 <template>
   <div class="game-container">
-    <audio id="bgMusic" preload="auto" autoplay loop>
+    <!-- <audio id="bgMusic" preload="auto" autoplay loop>
       <source :src="gameStatus.bgMusic"/>
     </audio>
     <audio preload="auto" id="firingMusic">
@@ -14,7 +14,7 @@
         <div v-for="(prize,index) in prizeList" v-if="index<21" :id="'prize-item_'+index"
              :class="[index%2===0?'item-odd':'item-even','prize-item']" :key="index">
           <img :src="prize.image" class="prize-img" alt="奖品图片">
-          <!--<span class="prize-name">{{prize.titleName}}</span>-->
+          <span class="prize-name">{{prize.titleName}}</span>
           <div v-if="index%2===1" class="icon-arrow arrow-right"></div>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <div v-for="(prize,index) in prizeList" v-if="index>=66&&index<74" :id="'prize-item_'+index"
                  :class="[index%2===0?'item-odd':'item-even','prize-item']" :key="index">
               <img :src="prize.image" class="prize-img" alt="奖品图片">
-              <!--<span class="prize-name">{{prize.titleName}}</span>-->
+              <span class="prize-name">{{prize.titleName}}</span>
               <div v-if="index%2===1" class="icon-arrow arrow-left"></div>
             </div>
           </div>
@@ -32,7 +32,7 @@
             <div v-for="(prize,index) in prizeList" v-if="index>=58&&index<66" :id="'prize-item_'+index"
                  :class="[index%2===0?'item-odd':'item-even','prize-item']" :key="index">
               <img :src="prize.image" class="prize-img" alt="奖品图片">
-              <!--<span class="prize-name">{{prize.titleName}}</span>-->
+              <span class="prize-name">{{prize.titleName}}</span>
               <div v-if="index%2===0" class="icon-arrow arrow-right"></div>
             </div>
           </div>
@@ -42,7 +42,7 @@
             <div v-for="(prize,index) in prizeList" v-if="index>=21&&index<29" :id="'prize-item_'+index"
                  :class="[index%2===0?'item-odd':'item-even','prize-item']" :key="index">
               <img :src="prize.image" class="prize-img" alt="奖品图片">
-              <!--<span class="prize-name">{{prize.titleName}}</span>-->
+              <span class="prize-name">{{prize.titleName}}</span>
               <div v-if="index%2===0" class="icon-arrow arrow-left"></div>
             </div>
           </div>
@@ -50,7 +50,7 @@
             <div v-for="(prize,index) in prizeList" v-if="index>=29&&index<37" :id="'prize-item_'+index"
                  :class="[index%2===0?'item-odd':'item-even','prize-item']" :key="index">
               <img :src="prize.image" class="prize-img" alt="奖品图片">
-              <!--<span class="prize-name">{{prize.titleName}}</span>-->
+              <span class="prize-name">{{prize.titleName}}</span>
               <div v-if="index%2===1" class="icon-arrow arrow-right"></div>
             </div>
           </div>
@@ -60,7 +60,7 @@
         <div v-for="(prize,index) in prizeList" v-if="index>=37&&index<58" :id="'prize-item_'+index"
              :class="[index%2===0?'item-odd':'item-even','prize-item']" :key="index">
           <img :src="prize.image" class="prize-img" alt="奖品图片">
-          <!--<span class="prize-name">{{prize.titleName}}</span>-->
+          <span class="prize-name">{{prize.titleName}}</span>
           <div v-if="index%2===0" class="icon-arrow arrow-left"></div>
         </div>
       </div>
@@ -104,7 +104,7 @@
           <li class="winner-txt">{{winnerInfo.memberName}}获得了{{winnerInfo.prizeName}}</li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
