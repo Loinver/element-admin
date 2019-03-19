@@ -72,7 +72,7 @@
       <el-checkbox
         v-model="showReviewer"
         class="filter-item"
-        style="margin-left:15px;"
+        style="margin-left:15px;margin-top:15px;"
         @change="tableKey=tableKey+1"
       >评论员
       </el-checkbox>
@@ -503,9 +503,9 @@
 </script>
 <style lang="scss" scoped>
   .filter-container {
+    padding-bottom: 20px;
     .el-input, .el-select {
-      margin-bottom: 20px;
-      margin-right: 20px;
+      margin:10px;
     }
   }
 </style>
