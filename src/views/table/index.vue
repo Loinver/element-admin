@@ -85,6 +85,7 @@
       border
       fit
       highlight-current-row
+      :max-height="maxHeight"
       style="width: 100%;"
       @sort-change="sortChange"
     >
@@ -285,6 +286,7 @@
     },
     data() {
       return {
+        maxHeight: 0,
         tableKey: 0,
         list: null,
         total: 0,
@@ -343,6 +345,8 @@
     },
     created() {
       this.getList();
+      const windowHeight = document.body.offsetHeight;
+      this.maxHeight = windowHeight - 300;
     },
     methods: {
       getList() {
@@ -505,7 +509,7 @@
   .filter-container {
     padding-bottom: 20px;
     .el-input, .el-select {
-      margin:10px;
+      margin: 10px;
     }
   }
 </style>

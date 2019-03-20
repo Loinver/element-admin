@@ -24,7 +24,8 @@ Vue.use(Router);
  * */
 // 所有权限通用路由表
 // 如首页和登录页和一些不用权限的公用页面
-export const constantRouterMap = [{
+export const constantRouterMap = [
+  {
     path: '/login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/login/index'),
     hidden: true
@@ -35,19 +36,19 @@ export const constantRouterMap = [{
     hidden: true
   },
   {
-    path: '/',
+    path: '',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
+    redirect: 'dashboard',
     children: [{
       path: 'dashboard',
+      name: 'Dashboard',
       component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index'),
       meta: {
         title: '首页',
-        icon: 'dashboard'
-      },
-      noCache: true,
-      affix: true
+        icon: 'dashboard',
+        noCache: true,
+        affix: true
+      }
     }]
   },
   {
@@ -59,12 +60,22 @@ export const constantRouterMap = [{
       title: '例子',
       icon: 'example'
     },
-    children: [{
+    children: [
+      {
         path: 'table',
         name: 'Table',
         component: () => import(/* webpackChunkName: "table" */ '@/views/table/index'),
         meta: {
           title: '表格',
+          icon: 'table'
+        }
+      },
+      {
+        path: 'table1',
+        name: 'Table1',
+        component: () => import(/* webpackChunkName: "table1" */ '@/views/table/index1'),
+        meta: {
+          title: '表格1',
           icon: 'table'
         }
       },
@@ -91,28 +102,32 @@ export const constantRouterMap = [{
   {
     path: '/form',
     component: Layout,
-    children: [{
-      path: 'index',
-      name: 'Form',
-      component: () => import(/* webpackChunkName: "form" */ '@/views/form/index'),
-      meta: {
-        title: '表单',
-        icon: 'form'
+    children: [
+      {
+        path: 'index',
+        name: 'Form',
+        component: () => import(/* webpackChunkName: "form" */ '@/views/form/index'),
+        meta: {
+          title: '表单',
+          icon: 'form'
+        }
       }
-    }]
+    ]
   },
   {
     path: '/setting',
     component: Layout,
-    children: [{
-      path: 'index',
-      name: 'setting',
-      component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index'),
-      meta: {
-        title: '用户设置',
-        icon: 'gear'
+    children: [
+      {
+        path: 'index',
+        name: 'setting',
+        component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index'),
+        meta: {
+          title: '用户设置',
+          icon: 'gear'
+        }
       }
-    }]
+    ]
   },
   {
     path: '/nested',
@@ -123,14 +138,16 @@ export const constantRouterMap = [{
       title: '嵌套路由',
       icon: 'nested'
     },
-    children: [{
+    children: [
+      {
         path: 'menu1',
         component: () => import(/* webpackChunkName: "menu1" */ '@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
         meta: {
           title: '菜单1'
         },
-        children: [{
+        children: [
+          {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
@@ -145,7 +162,8 @@ export const constantRouterMap = [{
             meta: {
               title: '菜单1-2'
             },
-            children: [{
+            children: [
+              {
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
@@ -181,11 +199,6 @@ export const constantRouterMap = [{
         }
       }
     ]
-  },
-  {
-    path: '*',
-    redirect: '/404',
-    hidden: true
   }
 ];
 
@@ -196,21 +209,26 @@ export default new Router({
   }),
   routes: constantRouterMap
 });
-export const asyncRouterMap = [{
+export const asyncRouterMap = [
+  {
     path: '/test',
-    // component: Layout,
-    redirect: '/test',
-    alwaysShow: true, // will always show the root menu
-    component: () => import(/* webpackChunkName: "test" */ '@/views/test/index'),
-    meta: {
-      title: '测试权限',
-      icon: 'gear',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    }
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'testIndex',
+        component: () => import(/* webpackChunkName: "test" */ '@/views/test/index'),
+        meta: {
+          title: '测试权限',
+          icon: 'gear',
+          roles: ['admin'] // you can set roles in root nav
+        }
+      }
+    ]
   },
   {
     path: '*',
     redirect: '/404',
     hidden: true
   }
-]
+];
