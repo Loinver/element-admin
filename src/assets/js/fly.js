@@ -19,7 +19,7 @@ axios.interceptors.response.use(
     response =>
         response,
     error =>
-        Promise.resolve(error.response)
+        Promise.reject(error)
 );
 
 axios.defaults.retry = 4;
