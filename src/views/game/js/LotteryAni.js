@@ -41,15 +41,15 @@ const LotteryAni = function (pos, baseTime = 100) {
 
   const next = function () {
     let index = begin + i;
-    index %= points.length;
+    let maxLength = points.length * loop + end;
+    index = index % points.length;
     if (_onPoint) _onPoint(index);
-    if (index === end && (begin + i >= points.length)) {
+    if (index === end && begin + i >= maxLength) {
       if (_onComplete) _onComplete();
     } else {
       i++;
       index = begin + i;
-      index %= points.length;
-      let maxLength = points.length * (loop + 1) + end;
+      index = index % points.length;
       let slowLength = 12;
       if (i >= maxLength - slowLength - begin) {
         baseTime += 50;

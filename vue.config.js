@@ -14,6 +14,7 @@ module.exports = {
     config.resolve.alias
       .set('@$', resolve('src'))
       .set('assets', resolve('src/assets'))
+      .set('utils', resolve('src/utils'))
       .set('components', resolve('src/components'));
     // 移除 prefetch 插件
     config.plugins.delete('prefetch');
@@ -56,9 +57,12 @@ module.exports = {
   devServer: {
     port: 8010,
     hotOnly: true,
+    host: '0.0.0.0',
+    open: true,
+    https: false,
     proxy: {
       '/api': {
-        target: '192.168.34.164:8010',
+        target: 'https://www.easy-mock.com/mock/5c7794e135c5e14db980feed/admin',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
@@ -66,7 +70,6 @@ module.exports = {
       }
     }
   },
-
   runtimeCompiler: true,
   productionSourceMap: undefined,
   parallel: undefined,

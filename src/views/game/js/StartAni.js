@@ -2,11 +2,8 @@ import TWEEN from '@tweenjs/tween.js'
 
 const StartAni = function (pos) {
   let p = pos;
-
   let points = [];
-
   let times = [];
-
   let i = 0;
   let _onPoint = null;
   let _onUpdate = null;
@@ -23,7 +20,6 @@ const StartAni = function (pos) {
   this.start = function () {
     p.x = points[0].x;
     p.y = points[0].y;
-
     next();
   };
 
@@ -41,7 +37,6 @@ const StartAni = function (pos) {
 
   let next = function () {
     if (_onPoint) _onPoint(i);
-
     i++;
     if (i >= points.length) {
       if (_onComplete) _onComplete();
@@ -55,4 +50,5 @@ const StartAni = function (pos) {
     }
   };
 };
+
 export default StartAni

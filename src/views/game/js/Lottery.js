@@ -5,11 +5,10 @@ import Point from './Point'
 const Lottery = function (_ball) {
   let ball = _ball;
   let p = new Point();
-
   let lotteryAni = new LotteryAni(p, ball.user.time);
   lotteryAni.onUpdate(function () {
-    ball.div.style.left = (p.x + 25) + 'px';
-    ball.div.style.top = (p.y + 25) + 'px';
+    ball.div.style.left = p.x + 'px';
+    ball.div.style.top = p.y + 'px';
   });
 
   let startAni = new StartAni(p);
@@ -36,7 +35,6 @@ const Lottery = function (_ball) {
   this.setLotteryPoints = function (arr) {
     lotteryAni.setPoints(arr);
   };
-
   this.setLotteryData = function (start, end, loop) {
     lotteryAni.setData(start, end, loop);
   };

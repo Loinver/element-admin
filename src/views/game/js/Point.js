@@ -38,9 +38,11 @@ const Point = function (x, y) {
       this.y = 1;
       return this;
     }
+
     d = 1 / d;
     this.x *= d;
     this.y *= d;
+
     return this;
   };
 
@@ -52,7 +54,7 @@ const Point = function (x, y) {
     return this.x === other.x && this.y === other.y;
   };
 
-  this.onsegment = function (p1, p2) {
+  this.onSegment = function (p1, p2) {
     if (Math.min(p1.x, p2.x) > this.x) return false;
     if (Math.max(p1.x, p2.x) < this.x) return false;
     if (Math.min(p1.y, p2.y) > this.y) return false;
