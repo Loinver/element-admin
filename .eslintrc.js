@@ -111,7 +111,7 @@ module.exports = {
     'space-unary-ops': 0, // 一元运算符的前/后要不要加空格
     'no-use-before-define': 0, // 未定义前不能使用
     'object-curly-newline': 0,
-
+    'import/no-cycle': 0,
   },
   parserOptions: {
     parser: 'babel-eslint'

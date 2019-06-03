@@ -34,7 +34,7 @@ export function parseTime(time, cFormat) {
       value = '0' + value
     }
     return value || 0
-  })
+  });
   return timeStr
 }
 

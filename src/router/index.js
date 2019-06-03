@@ -88,15 +88,15 @@ export const constantRouterMap = [
           icon: 'tree'
         }
       },
-      {
-        path: 'game',
-        name: 'game',
-        component: () => import(/* webpackChunkName: "game" */ '@/views/game/index.vue'),
-        meta: {
-          title: "转转乐",
-          icon: 'tree'
-        }
-      },
+      // {
+      //   path: 'game',
+      //   name: 'game',
+      //   component: () => import(/* webpackChunkName: "game" */ '@/views/game/index.vue'),
+      //   meta: {
+      //     title: "转转乐",
+      //     icon: 'tree'
+      //   }
+      // },
     ]
   },
   {
