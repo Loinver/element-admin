@@ -47,7 +47,7 @@
       </el-form-item>
       <div class="tips">
         <span style="margin-right:20px;">用户名: admin</span>
-        <span>密码1: admin</span>
+        <span>密码: admin</span>
       </div>
     </el-form>
   </div>
