@@ -44,30 +44,26 @@ export default {
           {
             date: "2016-05-02",
             name: "王小虎",
-            provinces: "四川省-成都市-武侯区",
-            city: "四川省成都市武侯区",
-            address: "上海市普陀区金沙江路 1518 弄",
+            provinces: "四川省成都市武侯区",
+            address: "四川省成都市武侯区金沙江路 1518 弄"
           },
           {
             date: "2016-05-04",
             name: "王小虎",
-            provinces: "上海市-普陀区",
-            city: "上海市普陀区",
-            address: "上海市普陀区金沙江路 1517 弄",
+            provinces: "上海市市辖区普陀区",
+            address: "上海市普陀区金沙江路 1517 弄"
           },
           {
             date: "2016-05-01",
             name: "王小虎",
-            provinces: "上海",
-            city: "上海市普陀区",
-            address: "上海市普陀区金沙江路 1519 弄",
+            provinces: "上海市市辖区普陀区",
+            address: "上海市普陀区金沙江路 1519 弄"
           },
           {
             date: "2016-05-03",
             name: "王小虎",
-            provinces: "上海",
-            city: "上海市普陀区",
-            address: "上海市普陀区金沙江路 1516 弄",
+            provinces: "上海市市辖区普陀区",
+            address: "上海市普陀区金沙江路 1516 弄"
           }
         ],
         // 当前所选择的操作类型
@@ -82,15 +78,19 @@ export default {
   },
   created() {},
   methods: {
+    formatCity(val) {
+      const regex = /.+?(省|市|自治区|自治州|县|区)/g;
+      return val.match(regex);
+    },
     handleShow(row) {
       this.tableOptions.handleType = "查看";
       this.tableOptions.selectRow = row;
-      console.log(row);
     },
     handleEdit(row) {
       this.tableOptions.handleType = "编辑";
+      row.provinces = this.formatCity(row.provinces);
+      console.log(row.provinces)
       this.tableOptions.selectRow = row;
-      console.log(row);
     }
   }
 };

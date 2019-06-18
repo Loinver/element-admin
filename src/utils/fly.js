@@ -6,20 +6,20 @@ import axios from "axios";
  * @author：Dll
  */
 axios.interceptors.request.use(
-    config =>
-        config,
-    error =>
-        Promise.reject(error)
+  config =>
+  config,
+  error =>
+  Promise.reject(error)
 );
 /**
  * 响应拦截
  * @author Dll
  */
 axios.interceptors.response.use(
-    response =>
-        response,
-    error =>
-        Promise.reject(error)
+  response =>
+  response,
+  error =>
+  Promise.reject(error)
 );
 
 axios.defaults.retry = 4;
@@ -67,7 +67,8 @@ const fly = {
    * @author Dll
    */
   // 接口地址
-  baseUrl: process.env.VUE_APP_CURRENTMODE === 'prod' ? 'http://activity.v4.kxdpm.com/' : 'http://dpm.kxpic.cn/',
+  baseUrl: process.env.VUE_APP_CURRENTMODE === 'prod' ? 'http://activity.v4.kxdpm.com/' :
+    'http://dpm.kxpic.cn/',
   /**
    * 封装axios请求
    */
@@ -81,7 +82,8 @@ const fly = {
     checkStatus(response) {
       // loading
       // 如果http状态码正常，则直接返回数据
-      if (response && (response.status === 200 || response.status === 304 || response.status === 400 || response.status === 204)) {
+      if (response && (response.status === 200 || response.status === 304 || response.status ===
+          400 || response.status === 204)) {
         return response.data;
         // 如果不需要除了data之外的数据，可以直接 return response.data
       }
@@ -126,9 +128,9 @@ const fly = {
         data,
         timeout: 30000
       }).then(response =>
-          fly.$axios.checkStatus(response)
+        fly.$axios.checkStatus(response)
       ).then(res =>
-          fly.$axios.checkCode(res)
+        fly.$axios.checkCode(res)
       );
     },
     /**
@@ -146,9 +148,9 @@ const fly = {
         params, // get 请求时带的参数
         timeout: 30000,
       }).then(response =>
-          fly.$axios.checkStatus(response)
+        fly.$axios.checkStatus(response)
       ).then(res =>
-          fly.$axios.checkCode(res)
+        fly.$axios.checkCode(res)
       );
     },
   },
@@ -253,7 +255,9 @@ const fly = {
      */
     let dt = new Date(s * 1000);
     return [
-      [dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt.getMinutes(), dt.getSeconds()].join(':')
+      [dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'), [dt.getHours(), dt
+        .getMinutes(), dt.getSeconds()
+      ].join(':')
     ].join(' ').replace(/(?=\b\d\b)/g, '0');
   },
   /**
@@ -428,7 +432,8 @@ String.prototype.isIDCard = function () {
   if (aCity[parseInt(sId.substr(0, 2), 10)] === null) {
     return false;
   }
-  const sBirthday = `${sId.substr(6, 4)}-${Number(sId.substr(10, 2))}-${Number(sId.substr(12, 2))}`;
+  const sBirthday =
+    `${sId.substr(6, 4)}-${Number(sId.substr(10, 2))}-${Number(sId.substr(12, 2))}`;
   const d = new Date(sBirthday.replace(/-/g, '/'));
   // 非法生日
   if (sBirthday !== (`${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`)) {
