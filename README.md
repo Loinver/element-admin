@@ -25,5 +25,5 @@ yarn run test
 yarn run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 在线浏览
+点击(https://loinver.github.io/element-admin/uat/index.html).
