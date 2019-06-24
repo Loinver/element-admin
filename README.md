@@ -1,23 +1,23 @@
 # element-admin
 
-## Project setup
+## 安装依赖
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### 本地开发环境
 ```
 yarn run serve
 ```
 
-### Compiles and minifies for production
+### 编译生产环境（uat）
 ```
-yarn run build
+yarn run build:uat
 ```
 
-### Run your tests
+### 编译生产环境（prod）
 ```
-yarn run test
+yarn run build:prod
 ```
 
 ### Lints and fixes files
