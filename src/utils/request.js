@@ -63,6 +63,7 @@ service.interceptors.response.use(
               });
           });
       }
+      console.log(response)
       return Promise.reject(new Error(error));
     }
     if (process.env.NODE_ENV === 'development') {
