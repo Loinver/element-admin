@@ -194,6 +194,7 @@ export const constantRouterMap = [
       {
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
+        name: 'Menu2',
         meta: {
           title: '菜单2'
         }
